@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using HealthyNutGuysDomain.Models;
+using HealthyNutGuysDomain.Models.Gallery;
+using HealthyNutGuysDomain.Repositories.Gallery;
+
+namespace HealthyNutGuysDataCore.Repositories.Gallery
+{
+  public class LeagueImageRepository : ILeagueImageRepository
+  {
+    #region Fields and Properties
+    private readonly HealthyNutGuysContext _dbContext;
+
+    #endregion
+
+    #region Constructor
+    public LeagueImageRepository(HealthyNutGuysContext dbContext)
+    {
+      this._dbContext = dbContext;
+    }
+    #endregion
+
+    #region Methods
+    private async Task<bool> LeagueImageExists(long? id, CancellationToken ct = default(CancellationToken))
+    {
+      return await GetByIDAsync(id, ct) != null;
+    }
+
+    public async Task<LeagueImage> AddAsync(LeagueImage leagueImage, CancellationToken ct = default)
+    {
+      this._dbContext.LeagueImages.Add(leagueImage);
+      await this._dbContext.SaveChangesAsync(ct);
+
+      return leagueImage;
+    }
+
+    public async Task<bool> DeleteAsync(long? id, CancellationToken ct = default)
+    {
+      if (!await LeagueImageExists(id, ct))
+      {
+        return false;
+      }
+
+      LeagueImage leagueImageToDelete = this._dbContext.LeagueImages.Find(id);
+      this._dbContext.LeagueImages.Remove(leagueImageToDelete);
+      await this._dbContext.SaveChangesAsync(ct);
+      return true;
+    }
+
+    public async Task<List<LeagueImage>> GetAllAsync(CancellationToken ct = default)
+    {
+      return await this._dbContext.LeagueImages.ToListAsync(ct);
+    }
+
+    public async Task<bool> UpdateAsync(LeagueImage leagueImage, CancellationToken ct = default)
+    {
+      if (!await this.LeagueImageExists(leagueImage.Id, ct))
+      {
+        return false;
+      }
+
+      this._dbContext.LeagueImages.Update(leagueImage);
+      await this._dbContext.SaveChangesAsync(ct);
+      return true;
+    }
+
+    public async Task<LeagueImage> GetByIDAsync(long? id, CancellationToken ct = default)
+    {
+      return await this._dbContext.LeagueImages.FindAsync(id);
+    }
+
+    public Task<IList<LeagueImage>> UpdateAsync(IList<LeagueImage> leagueImages, CancellationToken ct = default)
+    {
+      throw new NotImplementedException();
+    }
+
+    #endregion
+  }
+}
