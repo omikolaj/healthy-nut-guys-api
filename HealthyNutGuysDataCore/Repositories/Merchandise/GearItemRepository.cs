@@ -30,42 +30,25 @@ namespace HealthyNutGuysDataCore.Repositories
         }
         public async Task<List<GearItem>> GetAllAsync(CancellationToken ct = default)
         {
-            return await this._dbContext.GearItems.Include(gearItem => gearItem.Images).Include(gearItem => gearItem.Sizes).ToListAsync(ct);
+            throw new NotImplementedException();
         }
         public async Task<GearItem> AddAsync(GearItem gearItem, CancellationToken ct = default)
         {
-            this._dbContext.GearItems.Add(gearItem);
-            await this._dbContext.SaveChangesAsync(ct);
-
-            return gearItem;
+            throw new NotImplementedException();
         }
 
         public async Task<bool> DeleteAsync(long? id, CancellationToken ct = default)
         {
-            if (!await GearItemExists(id, ct))
-            {
-                return false;
-            }
-
-            GearItem gearItemToDelete = this._dbContext.GearItems.Find(id);
-            _dbContext.GearItems.Remove(gearItemToDelete);
-            await _dbContext.SaveChangesAsync(ct);
-            return true;
+            throw new NotImplementedException();
         }
         public async Task<GearItem> GetByIDAsync(long? id, CancellationToken ct = default)
         {
-            return await this._dbContext.GearItems.Include(gearItem => gearItem.Images).Include(gearItem => gearItem.Sizes).SingleOrDefaultAsync(gearItem => gearItem.Id == id);
+            throw new NotImplementedException();
         }
 
         public async Task<bool> UpdateAsync(GearItem gearItem, CancellationToken ct = default)
         {
-            if (!await GearItemExists(gearItem.Id, ct))
-            {
-                return false;
-            }
-            _dbContext.GearItems.Update(gearItem);
-            await _dbContext.SaveChangesAsync(ct);
-            return true;
+            throw new NotImplementedException();
         }
 
         #endregion

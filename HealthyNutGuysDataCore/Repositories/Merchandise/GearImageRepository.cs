@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using HealthyNutGuysDomain.Models.Merchandise;
 using HealthyNutGuysDomain.Repositories.Merchandise;
+using System;
 
 namespace HealthyNutGuysDataCore.Repositories
 {
@@ -31,33 +32,23 @@ namespace HealthyNutGuysDataCore.Repositories
     }
     public async Task<GearImage> AddAsync(GearImage gearSize, CancellationToken ct = default)
     {
-      _dbContext.GearImages.Add(gearSize);
-      await _dbContext.SaveChangesAsync(ct);
-      return gearSize;
-    }
+            throw new NotImplementedException();
+        }
 
     public async Task<bool> DeleteAsync(long? id, CancellationToken ct = default)
     {
-      if (!await GearImageExists(id, ct))
-      {
-        return false;
-      }
-
-      GearImage gearImageToDelete = this._dbContext.GearImages.Find(id);
-      _dbContext.GearImages.Remove(gearImageToDelete);
-      await _dbContext.SaveChangesAsync(ct);
-      return true;
-    }
+            throw new NotImplementedException();
+        }
 
     public async Task<List<GearImage>> GetAllByGearItemIdAsync(long? gearItemId, CancellationToken ct = default)
     {
-      return await this._dbContext.GearImages.Where(gearImage => gearImage.GearItemId == gearItemId).ToListAsync(ct);
-    }
+            throw new NotImplementedException();
+        }
 
     public async Task<GearImage> GetByIDAsync(long? id, CancellationToken ct = default)
     {
-      return await this._dbContext.GearImages.FindAsync(id);
-    }
+            throw new NotImplementedException();
+        }
 
     public Task<bool> UpdateAsync(GearImage gearSize, CancellationToken ct = default)
     {

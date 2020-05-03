@@ -13,14 +13,10 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 {
     public class DataBaseInitializer
     {
-        #region Methods
-
         public static void Initialize(IServiceProvider serviceProvider)
         {
             IdentitySeedData.Populate(serviceProvider).Wait();
             SeedData.Populate(serviceProvider);
-        }
-        
-        #endregion
+        }     
     }
 }

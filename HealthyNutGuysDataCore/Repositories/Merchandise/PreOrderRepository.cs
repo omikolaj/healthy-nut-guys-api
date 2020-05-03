@@ -33,24 +33,18 @@ namespace HealthyNutGuysDataCore.Repositories.Gallery
 
     public async Task<PreOrder> GetByIDAsync(long? id, CancellationToken ct)
     {
-      return await this._dbContext.PreOrders.Include(preOrder => preOrder.Contact).SingleOrDefaultAsync(preOrder => preOrder.Id == id);
-    }
+            throw new NotImplementedException();
+        }
 
     public async Task<PreOrder> AddAsync(PreOrder preOrder, CancellationToken ct = default)
     {
-      this._dbContext.PreOrders.Add(preOrder);
-      await this._dbContext.SaveChangesAsync(ct);
-
-      return preOrder;
-    }
+            throw new NotImplementedException();
+        }
 
     public async Task<PreOrderContact> AddPreOrderContactAsync(PreOrderContact preOrderContact, CancellationToken ct = default)
     {
-      this._dbContext.PreOrderContacts.Add(preOrderContact);
-      await this._dbContext.SaveChangesAsync(ct);
-
-      return preOrderContact;
-    }
+            throw new NotImplementedException();
+        }
 
     #endregion
   }

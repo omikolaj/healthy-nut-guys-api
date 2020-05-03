@@ -26,51 +26,33 @@ namespace HealthyNutGuysDataCore.Repositories.Gallery
     #region Methods
     private async Task<bool> LeagueImageExists(long? id, CancellationToken ct = default(CancellationToken))
     {
-      return await GetByIDAsync(id, ct) != null;
-    }
+            throw new NotImplementedException();
+        }
 
     public async Task<LeagueImage> AddAsync(LeagueImage leagueImage, CancellationToken ct = default)
     {
-      this._dbContext.LeagueImages.Add(leagueImage);
-      await this._dbContext.SaveChangesAsync(ct);
-
-      return leagueImage;
-    }
+            throw new NotImplementedException();
+        }
 
     public async Task<bool> DeleteAsync(long? id, CancellationToken ct = default)
     {
-      if (!await LeagueImageExists(id, ct))
-      {
-        return false;
-      }
-
-      LeagueImage leagueImageToDelete = this._dbContext.LeagueImages.Find(id);
-      this._dbContext.LeagueImages.Remove(leagueImageToDelete);
-      await this._dbContext.SaveChangesAsync(ct);
-      return true;
-    }
+            throw new NotImplementedException();
+        }
 
     public async Task<List<LeagueImage>> GetAllAsync(CancellationToken ct = default)
     {
-      return await this._dbContext.LeagueImages.ToListAsync(ct);
-    }
+            throw new NotImplementedException();
+        }
 
     public async Task<bool> UpdateAsync(LeagueImage leagueImage, CancellationToken ct = default)
     {
-      if (!await this.LeagueImageExists(leagueImage.Id, ct))
-      {
-        return false;
-      }
-
-      this._dbContext.LeagueImages.Update(leagueImage);
-      await this._dbContext.SaveChangesAsync(ct);
-      return true;
-    }
+            throw new NotImplementedException();
+        }
 
     public async Task<LeagueImage> GetByIDAsync(long? id, CancellationToken ct = default)
     {
-      return await this._dbContext.LeagueImages.FindAsync(id);
-    }
+            throw new NotImplementedException();
+        }
 
     public Task<IList<LeagueImage>> UpdateAsync(IList<LeagueImage> leagueImages, CancellationToken ct = default)
     {

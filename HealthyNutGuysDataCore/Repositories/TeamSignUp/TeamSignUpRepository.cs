@@ -32,18 +32,12 @@ namespace HealthyNutGuysDataCore.Repositories.TeamSignUp
         #region Team SignUp
         public async Task<Contact> AddTeamContactAsync(Contact teamContact, CancellationToken ct = default)
         {
-            this._dbContext.TeamsContact.Add(teamContact);
-            await this._dbContext.SaveChangesAsync(ct);
-
-            return teamContact;
+            throw new NotImplementedException();
         }
 
         public async Task<TeamSignUpForm> AddSignUpFormAsync(TeamSignUpForm teamSignUpForm, CancellationToken ct = default)
         {
-            this._dbContext.TeamSignUpForms.Add(teamSignUpForm);
-            await this._dbContext.SaveChangesAsync(ct);
-
-            return teamSignUpForm;
+            throw new NotImplementedException();
         }
 
         public Task<bool> DeleteSignUpFormAsync(long? id, CancellationToken ct = default)

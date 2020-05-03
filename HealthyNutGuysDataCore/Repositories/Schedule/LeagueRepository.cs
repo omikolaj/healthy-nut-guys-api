@@ -29,51 +29,34 @@ namespace HealthyNutGuysDataCore.Repositories.Schedule
 
         private async Task<bool> LeagueExists(string id, CancellationToken ct = default)
         {
-            return await GetByIdAsync(id, ct) != null;
+            throw new NotImplementedException();
         }
 
         public async Task<League> GetByIdAsync(string id, CancellationToken ct = default)
         {
-            return await this._dbContext.Leagues.Include(l => l.Teams).SingleOrDefaultAsync(l => l.Id == id);
+            throw new NotImplementedException();
         }
         
         public async Task<List<League>> GetBySportTypeIdAsync(string sportTypeId, CancellationToken ct = default)
         {
-            return await this._dbContext.Leagues.Where(league => league.Active == true && league.SportTypeID == sportTypeId).ToListAsync();
+            throw new NotImplementedException();
         }
 
         public async Task<League> AddAsync(League newLeague, CancellationToken ct = default)
         {
-            this._dbContext.Leagues.Add(newLeague);
-            await this._dbContext.SaveChangesAsync(ct);
-
-            return newLeague;
+            throw new NotImplementedException();
 
         }
 
         public async Task<bool> DeleteAsync(string id, CancellationToken ct = default)
         {
-            if(!await LeagueExists(id, ct))
-            {
-                return false;
-            }
-
-            League leagueToDelete = this._dbContext.Leagues.Find(id);
-            this._dbContext.Leagues.Remove(leagueToDelete);
-            await this._dbContext.SaveChangesAsync(ct);
-            return true;
+            throw new NotImplementedException();
 
         }
 
         public async Task<bool> UpdateAsync(League leagueToUpdate, CancellationToken ct = default)
         {
-            if(!await this.LeagueExists(leagueToUpdate.Id, ct))
-            {
-                return false;
-            }
-            this._dbContext.Leagues.Update(leagueToUpdate);
-            await this._dbContext.SaveChangesAsync(ct);
-            return true;
+            throw new NotImplementedException();
         }
     }
 }

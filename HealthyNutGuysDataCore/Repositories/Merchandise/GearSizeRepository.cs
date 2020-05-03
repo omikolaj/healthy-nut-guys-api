@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using HealthyNutGuysDomain.Models.Merchandise;
 using HealthyNutGuysDomain.Repositories.Merchandise;
+using System;
 
 namespace HealthyNutGuysDataCore.Repositories
 {
@@ -29,45 +30,29 @@ namespace HealthyNutGuysDataCore.Repositories
     }
     public async Task<GearSize> AddAsync(GearSize gearSize, CancellationToken ct = default)
     {
-      this._dbContext.GearSizes.Add(gearSize);
-      await this._dbContext.SaveChangesAsync(ct);
-      return gearSize;
-    }
+            throw new NotImplementedException();
+        }
 
     public async Task<bool> DeleteAsync(long? id, CancellationToken ct = default)
     {
-      if (!await GearSizeExists(id, ct))
-      {
-        return false;
-      }
-
-      GearSize gearSizeToDelete = this._dbContext.GearSizes.Find(id);
-      this._dbContext.GearSizes.Remove(gearSizeToDelete);
-      await this._dbContext.SaveChangesAsync(ct);
-      return true;
-    }
-
-    public async Task<List<GearSize>> GetAllByGearItemIdAsync(long? gearItemId, CancellationToken ct = default)
-    {
-      return await this._dbContext.GearSizes.Where(gearSize => gearSize.GearItemId == gearItemId).ToListAsync();
-    }
+            throw new NotImplementedException();
+        }
 
     public async Task<GearSize> GetByIDAsync(long? id, CancellationToken ct = default)
     {
-      return await _dbContext.GearSizes.FindAsync(id);
-    }
+            throw new NotImplementedException();
+        }
 
     public async Task<bool> UpdateAsync(GearSize gearSize, CancellationToken ct = default)
     {
-      if (!await this.GearSizeExists(gearSize.Id, ct))
-      {
-        return false;
-      }
-      this._dbContext.GearSizes.Update(gearSize);
-      await this._dbContext.SaveChangesAsync(ct);
-      return true;
-    }
+            throw new NotImplementedException();
+        }
 
-    #endregion
-  }
+        public Task<List<GearSize>> GetAllByGearItemIdAsync(long? id, CancellationToken ct = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+    }
 }

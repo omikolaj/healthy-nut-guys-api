@@ -13,8 +13,6 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 {
     public class IdentitySeedData
     {
-        #region Fields and Properties
-
         private static readonly string AdminRole = "admin";
         private static readonly string SuperUserRole = "superuser";
         private static readonly string UserRole = "user";
@@ -23,20 +21,18 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
         private static readonly string RetrievePermission = "retrieve";
         private static readonly string ViewPermission = "view";
 
-        #endregion
-
-        #region Methods
-
         public async static Task Populate(IServiceProvider serviceProvider)
         {
             UserManager<ApplicationUser> userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
             RoleManager<IdentityRole> roleManager = serviceProvider.GetService<RoleManager<IdentityRole>>();
             IConfiguration configuration = serviceProvider.GetService<IConfiguration>();
 
-            await Seed(userManager, roleManager, configuration);
+            HealthyNutGuysContext dbContext = serviceProvider.GetService<HealthyNutGuysContext>();
+
+            await Seed(userManager, roleManager, configuration, dbContext);
         }
 
-        private async static Task Seed(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+        private async static Task Seed(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, HealthyNutGuysContext dbContext)
         {
             // HealthyNutGuysRole[] roles = new HealthyNutGuysRole [] { HealthyNutGuysRole.User, HealthyNutGuysRole.Admin };
             string[] roles = new string[] { AdminRole, SuperUserRole, UserRole };
@@ -67,27 +63,84 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 }
             }
 
-            ApplicationUser admin = new ApplicationUser
+            ApplicationUser admin1 = new ApplicationUser
             {
-                UserName = "npostoloski",
-                Email = "npostoloski@icloud.com"
+                UserName = "jsprague",
+                Email = "jsprague@gmail.com",
+                FirstName = "Jordan",
+                LastName = "Legs",
+                PhoneNumber = "555-666-4545"
+            };
+
+            Address admin1Address = new Address()
+            {
+                FullName = $"{admin1.FirstName} {admin1.LastName}",
+                ApplicationUserId = admin1.Id,
+                Address1 = "7216 Covert Ave",
+                City = "Cleveland",
+                PostCode = "44105",
+            };
+
+            ApplicationUser admin2 = new ApplicationUser
+            {
+                UserName = "nwolf",
+                Email = "nwolf@gmail.com",
+                FirstName = "Nick",
+                LastName = "HanglySack",
+                PhoneNumber = "800-123-3455"
+            };
+
+            Address admin2Address = new Address()
+            {
+                FullName = $"{admin2.FirstName} {admin2.LastName}",
+                ApplicationUserId = admin2.Id,
+                Address1 = "654 Somewhere in Texas",
+                City = "Dallas",
+                PostCode = "70500",
             };
 
             ApplicationUser sysAdmin = new ApplicationUser
             {
                 UserName = "omikolaj",
-                Email = "omikolaj1@gmail.com"
+                Email = "omikolaj1@gmail.com",
+                FirstName = "Oskar",
+                LastName = "Mikolajczyk"
+            };
+
+            Address sysAdminAddress = new Address()
+            {
+                FullName = $"{sysAdmin.FirstName} {sysAdmin.LastName}",
+                ApplicationUserId = sysAdmin.Id,
+                Address1 = "8888 Park Ave",
+                City = "Parma Heights",
+                PostCode = "44133",
+            };
+
+            List<Address> addresses = new List<Address>
+            {
+                admin1Address,
+                admin2Address,
+                sysAdminAddress
             };
 
             PasswordHasher<ApplicationUser> password = new PasswordHasher<ApplicationUser>();
 
-            if (!userManager.Users.Any(u => u.UserName == admin.UserName))
+            if (!userManager.Users.Any(u => u.UserName == admin1.UserName))
             {
-                string hashed = password.HashPassword(admin, configuration["HealthyNutGuysAdminInitPassword"]);
-                admin.PasswordHash = hashed;
+                string hashed = password.HashPassword(admin1, configuration["HealthyNutGuysAdminInitPassword"]);
+                admin1.PasswordHash = hashed;
 
-                await userManager.CreateAsync(admin);
-                await userManager.AddToRoleAsync(admin, AdminRole);
+                await userManager.CreateAsync(admin1);
+                await userManager.AddToRoleAsync(admin1, AdminRole);
+            }
+
+            if (!userManager.Users.Any(u => u.UserName == admin2.UserName))
+            {
+                string hashed = password.HashPassword(admin2, configuration["HealthyNutGuysAdminInitPassword"]);
+                admin2.PasswordHash = hashed;
+
+                await userManager.CreateAsync(admin2);
+                await userManager.AddToRoleAsync(admin2, AdminRole);
             }
 
             if (!userManager.Users.Any(u => u.UserName == sysAdmin.UserName))
@@ -99,8 +152,15 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 await userManager.AddToRoleAsync(sysAdmin, AdminRole);
             }
 
+            if(dbContext.Addresses.Count() < addresses.Count)
+            {
+                foreach (Address address in addresses)
+                {
+                    dbContext.Addresses.Add(address);
+                    dbContext.SaveChanges();
+                }
+            }
         }
 
-        #endregion
     }
 }

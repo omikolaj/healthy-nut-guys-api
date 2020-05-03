@@ -36,49 +36,30 @@ namespace HealthyNutGuysDataCore.Repositories.Schedule
 
         public async Task<Team> GetByIdAsync(string id, CancellationToken ct = default)
         {
-            return await this._dbContext.Teams.FindAsync(id);
+            throw new NotImplementedException();
         }
 
         public async Task<List<Team>> GetAllByLeagueIdAsync(string leagueID, CancellationToken ct = default)
         {
-            return await this._dbContext.Teams.Where(team => team.Active == true && team.LeagueID == leagueID).ToListAsync();
+            throw new NotImplementedException();
         }
         public async Task<List<Team>> GetUnassignedTeams(CancellationToken ct = default)
         {
-            return await this._dbContext.Teams.Where(team => team.Active == true && team.LeagueID == null).ToListAsync();
+            throw new NotImplementedException();
         }
         public async Task<bool> DeleteAsync(string id, CancellationToken ct = default)
         {
-            if (!await TeamExists(id, ct))
-            {
-                return false;
-            }
-
-            Team teamToDelete = this._dbContext.Teams.Find(id);
-            this._dbContext.Teams.Remove(teamToDelete);
-            await this._dbContext.SaveChangesAsync(ct);
-            return true;
+            throw new NotImplementedException();
         }
 
         public async Task<Team> AddAsync(Team newTeam, CancellationToken ct = default)
         {
-            this._dbContext.Teams.Add(newTeam);
-            await this._dbContext.SaveChangesAsync(ct);
-
-            return newTeam;
+            throw new NotImplementedException();
         }
 
         public async Task<bool> UpdateAsync(Team updatedTeam, CancellationToken ct = default)
         {
-            if (!await this.TeamExists(updatedTeam.TeamId))
-            {
-                return false;
-            }
-
-            this._dbContext.Teams.Update(updatedTeam);
-            await this._dbContext.SaveChangesAsync(ct);
-
-            return true;
+            throw new NotImplementedException();
         }
 
         #endregion

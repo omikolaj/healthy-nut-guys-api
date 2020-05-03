@@ -37,51 +37,27 @@ namespace HealthyNutGuysDataCore.Repositories.Schedule
 
         public async Task<SportType> AddAsync(SportType newSportType, CancellationToken ct = default)
         {
-            this._dbContext.SportTypes.Add(newSportType);
-            await this._dbContext.SaveChangesAsync(ct);
-
-            return newSportType;
+            throw new NotImplementedException();
         }
 
         public async Task<bool> DeleteAsync(string id, CancellationToken ct = default)
         {
-            if (!await SportTypeExists(id, ct))
-            {
-                return false;
-            }
-
-            SportType sportTypeToDelete = this._dbContext.SportTypes.Find(id);
-            this._dbContext.SportTypes.Remove(sportTypeToDelete);
-            await this._dbContext.SaveChangesAsync(ct);
-            return true;
+            throw new NotImplementedException();
         }
 
         public async Task<SportType> GetByIdAsync(string id, CancellationToken ct = default)
         {
-            return await this._dbContext.SportTypes.FindAsync(id);
+            throw new NotImplementedException();
         }
 
         public async Task<bool> UpdateAsync(SportType sportTypeToUpdate, CancellationToken ct = default)
         {
-            if (!await this.SportTypeExists(sportTypeToUpdate.Id))
-            {
-                return false;
-            }
-
-            this._dbContext.SportTypes.Update(sportTypeToUpdate);
-            await this._dbContext.SaveChangesAsync(ct);
-            return true;
+            throw new NotImplementedException();
         }
 
         public async Task<List<SportType>> GetAllAsync(CancellationToken ct = default)
         {
-            return await this._dbContext.SportTypes
-                .Where(s => s.Active == true)
-                .IncludeFilter(sportType => sportType.Leagues
-                .Where(l => l.Active == true)
-                .Select(league => league.Teams
-                .Where(team => team.Active == true)))
-                .ToListAsync(ct);
+            throw new NotImplementedException();
 
         }
 

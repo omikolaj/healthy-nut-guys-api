@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace HealthyNutGuysDomain.Models
+{
+    public class UserSubscription
+    {
+        public string Id { get; set; }
+        public string ApplicationUserId { get; set; }
+        public string SubscriptionOfferId { get; set; }
+        public DateTime NextDelivery { get; set; }
+        public DateTime Modified { get; set; }
+        public int Frequency { get; set; }
+        public SubscriptionOffer SubscriptionOffer { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
+    }
+}
