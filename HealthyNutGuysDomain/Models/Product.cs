@@ -15,13 +15,12 @@ namespace HealthyNutGuysDomain.Models
         public string ImageSrc { get; set; }        
         [Column(TypeName = "decimal(5,2)")]
         public decimal? Price { get; set; }
+        public bool? Deleted { get; set; } = false;
         public bool? IsOnSale { get; set; }
         // if the item is on sale 
-        public SaleItem SaleItem { get; set; }
+        public ICollection<SaleItem> Sales { get; set; }
         public Category Category { get; set; }
         public ICollection<ProductDetails> ProductDetails { get; set; }
-        public ICollection<Tag> Tags { get; set; }
-        // if the item has special offers
-        public ICollection<SpecialOffer> SpecialOffers { get; set; }        
+        public ICollection<Tag> Tags { get; set; }   
     }
 }

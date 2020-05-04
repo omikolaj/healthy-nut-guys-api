@@ -10,6 +10,7 @@ namespace HealthyNutGuysDomain.Models
         public string MixCategoryId { get; set; }
         public string Name { get; set; }
         public bool InStock { get; set; }
+        public bool? Deleted { get; set; } = false;
         public MixCategory MixCategory { get; set; }
     }
 }

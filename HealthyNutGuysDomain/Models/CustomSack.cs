@@ -19,9 +19,10 @@ namespace HealthyNutGuysDomain.Models
         // if the item is on sale 
         public SaleItem SaleItem { get; set; }
         public Category Category { get; set; }
-        public ICollection<CustomSackDetails> CustomSackDetails { get; set; }
+        public ICollection<MixCategory> MixCategories { get; set; }
         public ICollection<Tag> Tags { get; set; }
         // if the item has special offers
-        public ICollection<SpecialOffer> SpecialOffers { get; set; }        
+        public ICollection<SpecialOffer> SpecialOffers { get; set; }
+        public ICollection<CustomSelectOption> SelectOptions { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace HealthyNutGuysDomain.Models
         public string Id { get; set; }
         [StringLength(10, ErrorMessage = "Code canno't be longer than 10 digits")]
         public string Code { get; set; }
+        public bool? Deleted { get; set; } = false;
         public DateTime ExpireDate { get; set; }
         [Column(TypeName = "decimal(5,2)")]
         public decimal DiscountValue { get; set; }

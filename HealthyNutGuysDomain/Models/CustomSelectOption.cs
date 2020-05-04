@@ -8,7 +8,7 @@ namespace HealthyNutGuysDomain.Models
     {
         public string Id { get; set; }
         public string Option { get; set; }
-        public string CustomSackDetailsId { get; set; }
-        public CustomSackDetails CustomSackDetails { get; set; }
+        public string CustomSackId { get; set; }
+        public CustomSack CustomSack { get; set; }
     }
 }

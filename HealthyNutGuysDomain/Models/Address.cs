@@ -16,6 +16,7 @@ namespace HealthyNutGuysDomain.Models
         [StringLength(5, ErrorMessage = "PostCode cannot be longer than 5 digits")]
         public string PostCode { get; set; }
         public string City { get; set; }
+        public bool? Deleted { get; set; } = false;
         public ApplicationUser ApplicationUser { get; set; }
         public ICollection<Order> Orders { get; set; }
     }

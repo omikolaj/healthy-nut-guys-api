@@ -10,9 +10,13 @@ namespace HealthyNutGuysDomain.Models
         public string Id { get; set; }
         [Column(TypeName = "decimal(5,2)")]
         public decimal DiscountValue { get; set; }
+        public string? SpecialOfferId { get; set; }
         public DateTime? ExpireDate { get; set; }
-        public DateTime? StartDate { get; set; }
-        public bool LimitedTimeOffer { get; set; } = false;
-        public bool StandardOffer { get; set; } = true;        
+        public DateTime? StartDate { get; set; }        
+        public int Frequency { get; set; }
+        public bool? Deleted { get; set; } = false;
+        public int Type { get; set; }        
+        public bool StandardOffer { get; set; } = true;
+        public SpecialOffer SpecialOffer { get; set; }
     }
 }

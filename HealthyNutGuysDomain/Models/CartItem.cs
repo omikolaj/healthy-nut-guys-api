@@ -12,6 +12,7 @@ namespace HealthyNutGuysDomain.Models
         public ProductDetails PropductDetails { get; set; }
         public int Quantity { get; set; }
         public bool SavedForLater { get; set; } = false;
+        public bool? Deleted { get; set; } = false;
         public DateTime TimeAdded { get; set; }
     }
 }

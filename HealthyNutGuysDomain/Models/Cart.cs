@@ -10,6 +10,7 @@ namespace HealthyNutGuysDomain.Models
         public string Id { get; set; }
         public string ApplicationUserId { get; set; }
         public bool Abandoned { get; set; } = false;
+        public bool? Deleted { get; set; } = false;
         public bool IsActive { get; set; } = true;
         public string IpAddress { get; set; }
         public ApplicationUser ApplicationUser { get; set; }

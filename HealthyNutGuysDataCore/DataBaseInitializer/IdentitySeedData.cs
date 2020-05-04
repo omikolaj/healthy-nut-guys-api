@@ -69,16 +69,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 Email = "jsprague@gmail.com",
                 FirstName = "Jordan",
                 LastName = "Legs",
-                PhoneNumber = "555-666-4545"
-            };
-
-            Address admin1Address = new Address()
-            {
-                FullName = $"{admin1.FirstName} {admin1.LastName}",
-                ApplicationUserId = admin1.Id,
-                Address1 = "7216 Covert Ave",
-                City = "Cleveland",
-                PostCode = "44105",
+                PhoneNumber = "555-666-4545",                
             };
 
             ApplicationUser admin2 = new ApplicationUser
@@ -90,15 +81,6 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 PhoneNumber = "800-123-3455"
             };
 
-            Address admin2Address = new Address()
-            {
-                FullName = $"{admin2.FirstName} {admin2.LastName}",
-                ApplicationUserId = admin2.Id,
-                Address1 = "654 Somewhere in Texas",
-                City = "Dallas",
-                PostCode = "70500",
-            };
-
             ApplicationUser sysAdmin = new ApplicationUser
             {
                 UserName = "omikolaj",
@@ -107,13 +89,66 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 LastName = "Mikolajczyk"
             };
 
+            PasswordHasher<ApplicationUser> password = new PasswordHasher<ApplicationUser>();
+
+            if (!userManager.Users.Any(u => u.UserName == admin1.UserName))
+            {
+                string hashed = password.HashPassword(admin1, configuration["THNG:HealthyNutGuysAdminInitPassword"]);
+                admin1.PasswordHash = hashed;
+
+                await userManager.CreateAsync(admin1);
+                await userManager.AddToRoleAsync(admin1, AdminRole);
+            }
+
+            if (!userManager.Users.Any(u => u.UserName == admin2.UserName))
+            {
+                string hashed = password.HashPassword(admin2, configuration["THNG:HealthyNutGuysAdminInitPassword"]);
+                admin2.PasswordHash = hashed;
+
+                await userManager.CreateAsync(admin2);
+                await userManager.AddToRoleAsync(admin2, AdminRole);
+            }
+
+            if (!userManager.Users.Any(u => u.UserName == sysAdmin.UserName))
+            {
+                string hashed = password.HashPassword(sysAdmin, configuration["THNG:HealthyNutGuysAdminInitPassword"]);
+                sysAdmin.PasswordHash = hashed;
+
+                await userManager.CreateAsync(sysAdmin);
+                await userManager.AddToRoleAsync(sysAdmin, AdminRole);
+            }
+            
+            Address admin1Address = new Address()
+            {
+                Id = "1",
+                FullName = $"{admin1.FirstName} {admin1.LastName}",
+                ApplicationUserId = admin1.Id,
+                Address1 = "7216 Covert Ave",
+                City = "Cleveland",
+                PostCode = "44105",
+                ApplicationUser = admin1
+            };
+
+            Address admin2Address = new Address()
+            {
+                Id = "2",
+                FullName = $"{admin2.FirstName} {admin2.LastName}",
+                ApplicationUserId = admin2.Id,
+                Address1 = "654 Somewhere in Texas",
+                City = "Dallas",
+                PostCode = "70500",
+                ApplicationUser = admin2
+            };
+
             Address sysAdminAddress = new Address()
             {
+                Id = "3",
                 FullName = $"{sysAdmin.FirstName} {sysAdmin.LastName}",
                 ApplicationUserId = sysAdmin.Id,
                 Address1 = "8888 Park Ave",
                 City = "Parma Heights",
                 PostCode = "44133",
+                ApplicationUser = sysAdmin
             };
 
             List<Address> addresses = new List<Address>
@@ -123,36 +158,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 sysAdminAddress
             };
 
-            PasswordHasher<ApplicationUser> password = new PasswordHasher<ApplicationUser>();
-
-            if (!userManager.Users.Any(u => u.UserName == admin1.UserName))
-            {
-                string hashed = password.HashPassword(admin1, configuration["HealthyNutGuysAdminInitPassword"]);
-                admin1.PasswordHash = hashed;
-
-                await userManager.CreateAsync(admin1);
-                await userManager.AddToRoleAsync(admin1, AdminRole);
-            }
-
-            if (!userManager.Users.Any(u => u.UserName == admin2.UserName))
-            {
-                string hashed = password.HashPassword(admin2, configuration["HealthyNutGuysAdminInitPassword"]);
-                admin2.PasswordHash = hashed;
-
-                await userManager.CreateAsync(admin2);
-                await userManager.AddToRoleAsync(admin2, AdminRole);
-            }
-
-            if (!userManager.Users.Any(u => u.UserName == sysAdmin.UserName))
-            {
-                string hashed = password.HashPassword(sysAdmin, configuration["HealthyNutGuysAdminInitPassword"]);
-                sysAdmin.PasswordHash = hashed;
-
-                await userManager.CreateAsync(sysAdmin);
-                await userManager.AddToRoleAsync(sysAdmin, AdminRole);
-            }
-
-            if(dbContext.Addresses.Count() < addresses.Count)
+            if (dbContext.Addresses.Count() < addresses.Count)
             {
                 foreach (Address address in addresses)
                 {

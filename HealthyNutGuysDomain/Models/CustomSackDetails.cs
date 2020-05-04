@@ -8,8 +8,8 @@ namespace HealthyNutGuysDomain.Models
     {
         public string Id { get; set; }
         public string MixCategoryId { get; set; }
-        public string ProductId { get; set; }
-        public MixCategory MixCategory { get; set; }
-        public ICollection<CustomSelectOption> SelectOptions { get; set; }        
+        public string CustomSackId { get; set; }
+        public MixCategory MixCategory { get; set; }        
+        public CustomSack CustomSack { get; set; }
     }
 }

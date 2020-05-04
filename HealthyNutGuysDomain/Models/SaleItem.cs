@@ -9,11 +9,12 @@ namespace HealthyNutGuysDomain.Models
     {
         public string Id { get; set; }
         public string ProductId { get; set; }
+        public bool? Deleted { get; set; } = false;
         public DateTime ExpireDate { get; set; }
         // % vs $
         public int Type { get; set; }
         [Column(TypeName = "decimal(5,2)")]
-        public decimal DiscountValue { get; set; }
+        public decimal? DiscountValue { get; set; }
         public Product Product { get; set; }        
     }
 }

@@ -6,8 +6,8 @@ namespace HealthyNutGuysDomain.Models
 {
     public class Tag
     {
-        public string Id { get; set; }
-        public string ProductId { get; set; }
-        public Product Product { get; set; }
+        public string Id { get; set; }        
+        public string Name { get; set; }
+        public bool? Deleted { get; set; } = false;
     }
 }

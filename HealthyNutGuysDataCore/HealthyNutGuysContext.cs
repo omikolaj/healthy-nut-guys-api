@@ -23,8 +23,7 @@ namespace HealthyNutGuysDataCore
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<CustomSack> CustomSacks { get; set; }
-        public DbSet<CustomSackDetails> CustomSackDetails { get; set; }
+        public DbSet<CustomSack> CustomSacks { get; set; }        
         public DbSet<ProductDetails> ProductDetails { get; set; }
         public DbSet<PromoCode> PromoCodes { get; set; }
         public DbSet<Tag> Tags { get; set; }            
@@ -35,11 +34,14 @@ namespace HealthyNutGuysDataCore
         public DbSet<SpecialOffer> SpecialOffers { get; set; }
         public DbSet<SaleItem> SaleItems { get; set; }
         public DbSet<SelectOption> SelectOptions { get; set; }
-        public DbSet<CustomSelectOption> CustomSelectOptions { get; set; }
+        public DbSet<CustomSelectOption> CustomSelectOptions { get; set; }        
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);         
+            base.OnModelCreating(builder);
+            builder.Entity<Tag>()
+                .HasOne<Product>()
+                .WithMany(_ => _.Tags);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
