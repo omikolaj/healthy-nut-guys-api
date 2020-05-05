@@ -23,7 +23,7 @@ namespace HealthyNutGuysDataCore
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<CustomSack> CustomSacks { get; set; }        
+        public DbSet<CustomProduct> CustomSacks { get; set; }        
         public DbSet<ProductDetails> ProductDetails { get; set; }
         public DbSet<PromoCode> PromoCodes { get; set; }
         public DbSet<Tag> Tags { get; set; }            

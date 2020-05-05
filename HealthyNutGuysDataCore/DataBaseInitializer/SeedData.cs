@@ -504,7 +504,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 energySackGranolaTag
             };
 
-            CustomSack customSack = new CustomSack()
+            CustomProduct customSack = new CustomProduct()
             {
                 Id = "29",
                 Name = "Custom Nut Sack",
