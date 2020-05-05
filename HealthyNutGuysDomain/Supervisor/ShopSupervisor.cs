@@ -16,7 +16,7 @@ namespace HealthyNutGuysDomain.Supervisor
         {
             // retrieve all special offers
             List<SpecialOffer> specialOffers = await this._specialOfferRepository.GetAllAsync(ct);
-            var shopOffers = specialOffers.Where(o => o.Scope == OfferScope.Shop && o.ExpireDate > DateTime.Today).ToList();
+            List<SpecialOffer> shopOffers = specialOffers.Where(o => o.Scope == OfferScope.Shop && o.ExpireDate > DateTime.Today).ToList();
 
             SpecialOfferViewModel shopOffer = null;
             // if the count is greater than 1 then we have a problem, we only ever want to display one shop offer
@@ -36,6 +36,30 @@ namespace HealthyNutGuysDomain.Supervisor
             }
 
             return shopOffer;
+        }
+
+        public async Task<List<ProductViewModel>> GetAllProducts(CancellationToken ct = default)
+        {
+            // retrieve all products that are available
+            List<Product> products = await this._productRepository.GetAllAsync(ct);
+
+            List<ProductViewModel> productsView = new List<ProductViewModel>();
+
+            // check if item has any sales
+            foreach (Product product in products)
+            {
+                ProductViewModel productView = ProductConverter.Convert(product);
+
+                if (product.IsOnSale == true)
+                {
+                    List<SaleItemViewModel> saleItemViews = SaleItemConverter.ConvertList(await this._saleItemRepository.GetByProductId(product.Id));
+                    productView.Sales = saleItemViews;
+                }
+
+                productsView.Add(productView);
+            }
+
+            return productsView;
         }
     }
 }

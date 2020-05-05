@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthyNutGuysDataCore.Migrations
 {
     [DbContext(typeof(HealthyNutGuysContext))]
-    [Migration("20200504190611_InitialCreate")]
+    [Migration("20200505153333_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -551,6 +551,9 @@ namespace HealthyNutGuysDataCore.Migrations
 
                     b.Property<decimal?>("DiscountValue")
                         .HasColumnType("decimal(5,2)");
+
+                    b.Property<string>("DisplayMessage")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ExpireDate")
                         .HasColumnType("datetime2");

@@ -15,6 +15,8 @@ namespace HealthyNutGuysDomain.ViewModels
         public string? PromoCodeId { get; set; }                
         [DataMember(EmitDefaultValue = false)]
         public bool? AppliesNextOrder { get; set; }
+        [DataMember(EmitDefaultValue = false)]
+        public string DisplayMessage { get; set; }
         // store wide vs specific to subscription offer, nullable because promo codes that point to special offers do not set scope
         [DataMember(EmitDefaultValue = false)]
         public OfferScope? Scope { get; set; }

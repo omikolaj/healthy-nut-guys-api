@@ -578,6 +578,7 @@ namespace HealthyNutGuysDataCore.Migrations
                     UserSubscriptionId = table.Column<string>(nullable: true),
                     Deleted = table.Column<bool>(nullable: true),
                     AppliesNextOrder = table.Column<bool>(nullable: true),
+                    DisplayMessage = table.Column<string>(nullable: true),
                     Scope = table.Column<int>(nullable: false),
                     ExpireDate = table.Column<DateTime>(nullable: false),
                     Type = table.Column<int>(nullable: false),

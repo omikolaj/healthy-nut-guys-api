@@ -16,8 +16,8 @@ namespace HealthyNutGuysDomain.Models
         [Column(TypeName = "decimal(5,2)")]
         public decimal? Price { get; set; }
         public bool? Deleted { get; set; } = false;
-        public bool? IsOnSale { get; set; }
-        // if the item is on sale 
+        public bool IsOnSale { get; set; } = false;
+        // if the item is on sale   
         public ICollection<SaleItem> Sales { get; set; }
         public Category Category { get; set; }
         public ICollection<ProductDetails> ProductDetails { get; set; }

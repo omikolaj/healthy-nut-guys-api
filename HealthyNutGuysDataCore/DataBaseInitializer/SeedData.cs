@@ -370,7 +370,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 Subtitle = "Healthy Nut Guys",
                 Description = "Energize your Nut Sack with this awesome mix! Almonds, peanuts, and cashews provide long-lasting energy (you're welcome ladies) while the bananas, apple rings, and raisins will provide a quick boost in energy levels! For even more energy, we've topped it off with coconut, dark chocolate chips, and pumpkin seeds. All ingredients are organic so you can enjoy the natural stamina without the crash.",
                 Price = (decimal)18.99,
-                ImageSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/energy_nut_sack_label_y64lpg.png",
+                ImageSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/energy_nut_sack_jwssmx.png",                
                 CategoryId = nutCategory.Id,
                 IsOnSale = true,
                 Tags = energySackTags
@@ -903,7 +903,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             {
                 Id = "65",
                 PromoCodeId = promoCode.Id,
-                ExpireDate = DateTime.Today.AddDays(100),
+                ExpireDate = DateTime.Now.AddDays(-100),
                 Type = OfferType.PromoCode, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code,                
             };
 
@@ -1059,7 +1059,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             {
                 Id = "7456",
                 PromoCodeId = shopWidePromoCode.Id,
-                ExpireDate = DateTime.Now.AddDays(15),
+                ExpireDate = DateTime.Now.AddDays(150),
                 Type = OfferType.PromoCode, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code,       
                 AppliesNextOrder = false,                
                 Scope = OfferScope.Shop, //1 = store wide, 2 = specific to subscription offer

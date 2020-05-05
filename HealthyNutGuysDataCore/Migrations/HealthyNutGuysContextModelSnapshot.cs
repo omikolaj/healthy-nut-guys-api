@@ -550,6 +550,9 @@ namespace HealthyNutGuysDataCore.Migrations
                     b.Property<decimal?>("DiscountValue")
                         .HasColumnType("decimal(5,2)");
 
+                    b.Property<string>("DisplayMessage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("ExpireDate")
                         .HasColumnType("datetime2");
 

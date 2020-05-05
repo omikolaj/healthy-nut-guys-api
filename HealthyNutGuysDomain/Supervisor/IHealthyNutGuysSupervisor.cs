@@ -116,5 +116,11 @@ namespace HealthyNutGuysDomain
         Task<SpecialOfferViewModel> GetValidShopOfferAsync(CancellationToken ct = default);
 
         #endregion
+
+        #region Shop
+
+        Task<List<ProductViewModel>> GetAllProducts(CancellationToken ct = default);
+
+        #endregion
     }
 }

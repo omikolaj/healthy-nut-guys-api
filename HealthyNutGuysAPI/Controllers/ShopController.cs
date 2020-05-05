@@ -22,6 +22,12 @@ namespace HealthyNutGuysAPI.Controllers
 
         private readonly IHealthyNutGuysSupervisor _supervisor;
 
+        [HttpGet("products")]
+        public async Task<ActionResult<List<ProductViewModel>>> GetProducts(CancellationToken ct = default)
+        {
+            return await this._supervisor.GetAllProducts(ct);
+        }
+
         [HttpGet("offer")]
         public async Task<ActionResult<SpecialOfferViewModel>> GetShopOffer(CancellationToken ct = default)
         {

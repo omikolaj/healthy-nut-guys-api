@@ -13,6 +13,7 @@ namespace HealthyNutGuysDomain.Models
         public string? UserSubscriptionId { get; set; }
         public bool? Deleted { get; set; } = false;
         public bool? AppliesNextOrder { get; set; }
+        public string DisplayMessage { get; set; }
         // store wide vs specific to subscription offer, nullable because promo codes that point to special offers do not set scope
         public OfferScope Scope { get; set; }
         public DateTime ExpireDate { get; set; }

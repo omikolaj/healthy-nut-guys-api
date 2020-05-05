@@ -16,8 +16,10 @@ namespace HealthyNutGuysDomain.Converters
             model.Scope = (OfferScope)specialOffer?.Scope;
             model.Type = (OfferType)specialOffer.Type;            
             model.ExpireDate = (DateTime)specialOffer?.ExpireDate;
-
+            model.DisplayMessage = specialOffer.DisplayMessage;
+            
             return model;
         }
     }
 }
+ 
