@@ -107,7 +107,13 @@ namespace HealthyNutGuysDomain
         Task<bool> PublishSessionsSchedulesAsync(List<LeagueSessionScheduleViewModel> newLeagueSessionSchedule, CancellationToken ct = default(CancellationToken));                        
         Task<List<ActiveSessionInfoViewModel>> GetActiveSessionsInfoAsync(List<string> leagueIDs, CancellationToken ct = default(CancellationToken));
         Task<List<LeagueSessionScheduleViewModel>> GetAllActiveSessionsAsync(CancellationToken ct = default(CancellationToken));
-        Task<MatchResultViewModel> ReportMatchAsync(MatchResultViewModel matchResult, CancellationToken ct = default(CancellationToken));      
+        Task<MatchResultViewModel> ReportMatchAsync(MatchResultViewModel matchResult, CancellationToken ct = default(CancellationToken));
+
+        #endregion
+
+        #region ShopOffer
+
+        Task<SpecialOfferViewModel> GetValidShopOfferAsync(CancellationToken ct = default);
 
         #endregion
     }

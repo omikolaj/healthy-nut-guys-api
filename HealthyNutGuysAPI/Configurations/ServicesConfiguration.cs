@@ -31,7 +31,9 @@ namespace HealthyNutGuysAPI.Configurations
                     .AddScoped<ILeagueRepository, LeagueRepository>()
                     .AddScoped<ISessionScheduleRepository, SessionScheduleRepository>()
                     .AddScoped<ISportTypeRepository, SportTypeRepository>()
-                    .AddScoped<ITeamRepository, TeamRepository>();
+                    .AddScoped<ITeamRepository, TeamRepository>()                    
+                    .AddScoped<IPromoCodeRepository, PromoCodeRepository>()
+                    .AddScoped<ISpecialOfferRepository, SpecialOfferRepository>();
 
       return services;
     }

@@ -6,10 +6,5 @@ namespace HealthyNutGuysAPI.Controllers
   public class HealthyNutGuysBaseController : ControllerBase
   {
 
-    // protected readonly IMoviesPlaceSupervisor _moviesPlaceSupervisor;
-    //     public MoviesPlaceBaseController(IMoviesPlaceSupervisor moviesPlaceSupervisor)
-    //     {
-    //       _moviesPlaceSupervisor = moviesPlaceSupervisor;
-    //     }
   }
 }

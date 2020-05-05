@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using HealthyNutGuysDomain.Models.Schedule;
 using HealthyNutGuysDomain.Models;
 using Microsoft.AspNetCore.Identity;
+using HealthyNutGuysDomain.ViewModels;
+using HealthyNutGuysDomain;
 
 namespace HealthyNutGuysDataCore.DataBaseInitializer
 {
@@ -22,6 +24,8 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
         private static void SeedShop(HealthyNutGuysContext dbContext, UserManager<ApplicationUser> userManager)
         {
+            if (dbContext.Products.Count() > 0) return;
+
             Category nutCategory = new Category()
             {
                 Id = "1",
@@ -90,7 +94,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 Id = "1",
                 ProductId = succulentSack.Id,
                 ExpireDate = DateTime.Today.AddDays(100),
-                Type = 4, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
+                Type = OfferType.PercentOff, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
                 DiscountValue = 5,
             };
 
@@ -238,7 +242,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 Id = "10",
                 ProductId = ketoSack.Id,
                 ExpireDate = DateTime.Today.AddDays(100),
-                Type = 3, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
+                Type = OfferType.AmountOff, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
                 DiscountValue = (decimal)2.99
             };
 
@@ -380,7 +384,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 Id = "20",
                 ProductId = energySack.Id,
                 ExpireDate = DateTime.Today.AddDays(29),
-                Type = 1, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code               
+                Type = OfferType.FreeShipping, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code               
             };
 
             dbContext.SaleItems.Add(energySackSale);
@@ -563,7 +567,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 Id = "34",
                 InStock = true,
                 Name = "Nuts",
-                Type = 1
+                Type = MixCategoryType.Nuts
             };
 
             dbContext.MixCategories.Add(nuts);
@@ -647,7 +651,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 Id = "42",
                 InStock = true,
                 Name = "Fruits",
-                Type = 2
+                Type = MixCategoryType.Fruits
             };
 
             dbContext.MixCategories.Add(fruits);
@@ -767,7 +771,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 Id = "54",
                 InStock = true,
                 Name = "Seeds",
-                Type = 3
+                Type = MixCategoryType.Seeds
             };
 
             dbContext.MixCategories.Add(seeds);
@@ -833,7 +837,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 Id = "60",
                 InStock = true,
                 Name = "Granola",
-                Type = 4
+                Type = MixCategoryType.Granola
             };
 
             dbContext.MixCategories.Add(granola);
@@ -887,7 +891,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             PromoCode promoCode = new PromoCode
             {
                 Id = "64",
-                Type = 4, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
+                Type = OfferType.PercentOff, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
                 Code = "4321",
                 DiscountValue = 5
             };
@@ -900,54 +904,54 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 Id = "65",
                 PromoCodeId = promoCode.Id,
                 ExpireDate = DateTime.Today.AddDays(100),
-                Type = 5, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code                  
+                Type = OfferType.PromoCode, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code,                
             };
 
             SubscriptionOffer weeklySubscription = new SubscriptionOffer
             {
                 Id = "66",
-                Frequency = 1, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,
-                Type = 4, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
+                Frequency = Frequency.Weekly, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,
+                Type = OfferType.PercentOff, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
                 DiscountValue = 20
             };
 
             SubscriptionOffer biWeeklySubscription = new SubscriptionOffer
             {
                 Id = "67",
-                Frequency = 2, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,
-                Type = 4, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
+                Frequency = Frequency.Biweekly, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,
+                Type = OfferType.PercentOff, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
                 DiscountValue = 20
             };
 
             SubscriptionOffer semiMonthlySubscription = new SubscriptionOffer
             {
                 Id = "68",
-                Frequency = 3, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,
-                Type = 4, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
+                Frequency = Frequency.SemiMonthly, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,
+                Type = OfferType.PercentOff, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
                 DiscountValue = 20
             };
 
             SubscriptionOffer monthlySubscription = new SubscriptionOffer
             {
                 Id = "69",
-                Frequency = 4, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,
-                Type = 4, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
+                Frequency = Frequency.Monthly, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,
+                Type = OfferType.PercentOff, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
                 DiscountValue = 20
             };
 
             SubscriptionOffer quarterlyMonthlySubscription = new SubscriptionOffer
             {
                 Id = "70",
-                Frequency = 5, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,
-                Type = 4, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
+                Frequency = Frequency.Quarterly, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,
+                Type = OfferType.PercentOff, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
                 DiscountValue = 20
             };
 
             SubscriptionOffer limitedExpiredTimeSubscription = new SubscriptionOffer
             {
                 Id = "71",
-                Frequency = 3, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,
-                Type = 4, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
+                Frequency = Frequency.SemiMonthly, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,
+                Type = OfferType.PercentOff, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
                 DiscountValue = 25,
                 StandardOffer = false,                
                 StartDate = DateTime.Today,
@@ -973,8 +977,8 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             SubscriptionOffer limitedTimeSubscriptionWeekly = new SubscriptionOffer
             {
                 Id = "72",
-                Frequency = 1, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,                                
-                Type = 6, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code, 6 special offer
+                Frequency = Frequency.Weekly, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,                                
+                Type = OfferType.Special, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code, 6 special offer
                 StandardOffer = false,
                 DiscountValue = 20,
                 StartDate = DateTime.Today,
@@ -984,8 +988,8 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             SubscriptionOffer limitedTimeSubscriptionBiWeekly = new SubscriptionOffer
             {
                 Id = "73",
-                Frequency = 2, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,                                
-                Type = 6, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code, 6 special offer
+                Frequency = Frequency.Biweekly, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,                                
+                Type = OfferType.Special, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code, 6 special offer
                 StandardOffer = false,
                 DiscountValue = 20,
                 StartDate = DateTime.Today,
@@ -995,8 +999,8 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             SubscriptionOffer limitedTimeSubscriptionSemiMonthly = new SubscriptionOffer
             {
                 Id = "74",
-                Frequency = 3, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,                                
-                Type = 6, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code, 6 special offer
+                Frequency = Frequency.SemiMonthly, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,                                
+                Type = OfferType.Special, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code, 6 special offer
                 StandardOffer = false,
                 DiscountValue = 20,
                 StartDate = DateTime.Today,
@@ -1006,8 +1010,8 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             SubscriptionOffer limitedTimeMonthly = new SubscriptionOffer
             {
                 Id = "75",
-                Frequency = 4, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,                                
-                Type = 6, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code, 6 special offer
+                Frequency = Frequency.SemiMonthly, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,                                
+                Type = OfferType.Special, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code, 6 special offer
                 StandardOffer = false,
                 DiscountValue = 20,
                 StartDate = DateTime.Today,
@@ -1031,12 +1035,39 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             SpecialOffer freeShippingNextOrder = new SpecialOffer
             {
                 Id = "76",
-                Type = 1, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code,       
-                AppliesNextOrder = true
+                Type = OfferType.FreeShipping, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code,       
+                AppliesNextOrder = true,
+                Scope = OfferScope.Subscription, //1 = store wide, 2 = specific to subscription offer
             };
 
             dbContext.SpecialOffers.Add(freeShippingNextOrder);
             dbContext.SaveChanges();
+
+            PromoCode shopWidePromoCode = new PromoCode
+            {
+                Id = "1s232",
+                Code = "123123",
+                ExpireDate = DateTime.Now.AddDays(15),
+                Type = OfferType.PercentOff,
+                DiscountValue = (decimal)10.00
+            };
+
+            dbContext.PromoCodes.Add(shopWidePromoCode);
+            dbContext.SaveChanges();
+
+            SpecialOffer storeWidePromoCode = new SpecialOffer
+            {
+                Id = "7456",
+                PromoCodeId = shopWidePromoCode.Id,
+                ExpireDate = DateTime.Now.AddDays(15),
+                Type = OfferType.PromoCode, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code,       
+                AppliesNextOrder = false,                
+                Scope = OfferScope.Shop, //1 = store wide, 2 = specific to subscription offer
+            };
+
+            dbContext.SpecialOffers.Add(storeWidePromoCode);
+            dbContext.SaveChanges();
+            
 
             foreach (SubscriptionOffer offer in specialSubscriptions)
             {

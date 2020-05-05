@@ -11,7 +11,7 @@ namespace HealthyNutGuysDomain.Models
         public string SubscriptionOfferId { get; set; }
         public DateTime NextDelivery { get; set; }
         public DateTime Modified { get; set; }
-        public int Frequency { get; set; }
+        public Frequency Frequency { get; set; }
         public bool? Deleted { get; set; } = false;
         public SubscriptionOffer SubscriptionOffer { get; set; }
         public ApplicationUser ApplicationUser { get; set; }

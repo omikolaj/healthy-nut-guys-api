@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HealthyNutGuysDomain.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -13,9 +14,9 @@ namespace HealthyNutGuysDomain.Models
         public string? SpecialOfferId { get; set; }
         public DateTime? ExpireDate { get; set; }
         public DateTime? StartDate { get; set; }        
-        public int Frequency { get; set; }
+        public Frequency Frequency { get; set; }
         public bool? Deleted { get; set; } = false;
-        public int Type { get; set; }        
+        public OfferType Type { get; set; }        
         public bool StandardOffer { get; set; } = true;
         public SpecialOffer SpecialOffer { get; set; }
     }

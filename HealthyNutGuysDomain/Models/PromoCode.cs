@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HealthyNutGuysDomain.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,6 +16,6 @@ namespace HealthyNutGuysDomain.Models
         public DateTime ExpireDate { get; set; }
         [Column(TypeName = "decimal(5,2)")]
         public decimal DiscountValue { get; set; }
-        public int Type { get; set; }
+        public OfferType Type { get; set; }
     }
 }

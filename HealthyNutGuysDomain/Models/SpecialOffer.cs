@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HealthyNutGuysDomain.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -12,9 +13,11 @@ namespace HealthyNutGuysDomain.Models
         public string? UserSubscriptionId { get; set; }
         public bool? Deleted { get; set; } = false;
         public bool? AppliesNextOrder { get; set; }
+        // store wide vs specific to subscription offer, nullable because promo codes that point to special offers do not set scope
+        public OfferScope Scope { get; set; }
         public DateTime ExpireDate { get; set; }
         // free shipping vs free stickers vs % off vs $ off
-        public int Type { get; set; }
+        public OfferType Type { get; set; }
         [Column(TypeName = "decimal(5,2)")]
         public decimal? DiscountValue { get; set; }
         public PromoCode PromoCode { get; set; }

@@ -24,7 +24,9 @@ namespace HealthyNutGuysDomain.Supervisor
         private readonly ILeagueRepository _leagueRepository;
         private readonly ISessionScheduleRepository _sessionScheduleRepository;
         private readonly ISportTypeRepository _sportTypeRepository;
-        private readonly ITeamRepository _teamRepository;
+        private readonly ITeamRepository _teamRepository;        
+        private readonly IPromoCodeRepository _promoCodeRepository;
+        private readonly ISpecialOfferRepository _specialOfferRepository;
 
         #endregion
 
@@ -40,7 +42,9 @@ namespace HealthyNutGuysDomain.Supervisor
         ILeagueRepository leagueRepository,
         ISessionScheduleRepository sessionScheduleRepository,
         ISportTypeRepository sportTypeRepository,
-        ITeamRepository teamRepository
+        ITeamRepository teamRepository,        
+        IPromoCodeRepository promoCodeRepository,
+        ISpecialOfferRepository specialOfferRepository
       )
         {
             this._applicationUserRepository = applicationUserRepository;
@@ -53,7 +57,9 @@ namespace HealthyNutGuysDomain.Supervisor
             this._leagueRepository = leagueRepository;
             this._sessionScheduleRepository = sessionScheduleRepository;
             this._sportTypeRepository = sportTypeRepository;
-            this._teamRepository = teamRepository;
+            this._teamRepository = teamRepository;            
+            this._promoCodeRepository = promoCodeRepository;
+            this._specialOfferRepository = specialOfferRepository;
         }
 
         #endregion

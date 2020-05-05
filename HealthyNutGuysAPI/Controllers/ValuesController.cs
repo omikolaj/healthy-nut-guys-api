@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using HealthyNutGuysDomain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Configuration;
 
 namespace HealthyNutGuysAPI.Controllers
@@ -15,10 +17,31 @@ namespace HealthyNutGuysAPI.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly UserManager<ApplicationUser> _userManager;
-        public ValuesController(IConfiguration configuration, UserManager<ApplicationUser> userManager)
+        private readonly IActionDescriptorCollectionProvider _actionDescriptorCollectionProvider;
+        public ValuesController(IConfiguration configuration, UserManager<ApplicationUser> userManager, IActionDescriptorCollectionProvider actionDescriptorCollectionProvider)
         {
             this._configuration = configuration;
             this._userManager = userManager;
+            this._actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
+        }
+
+        [HttpGet("routes")]
+        public IActionResult Index()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in this._actionDescriptorCollectionProvider.ActionDescriptors.Items)
+            {
+                var action = Url.Action(new Microsoft.AspNetCore.Mvc.Routing.UrlActionContext
+                {
+                    Action = item.RouteValues["action"],
+                    Controller = item.RouteValues["controller"],
+                    Values = item.RouteValues
+                });
+
+                sb.AppendLine(action).AppendLine().AppendLine();
+            }
+
+            return Ok(sb.ToString());
         }
         // GET api/values
         [HttpGet]

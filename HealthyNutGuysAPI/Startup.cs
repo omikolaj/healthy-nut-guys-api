@@ -19,6 +19,7 @@ using HealthyNutGuysAPI.Extensions;
 using HealthyNutGuysAPI.Middleware;
 using HealthyNutGuysAPI.MIddleware;
 using Microsoft.Extensions.Hosting;
+using AspNetCore.RouteAnalyzer;
 
 namespace HealthyNutGuysAPI
 {
@@ -66,10 +67,11 @@ namespace HealthyNutGuysAPI
                         .ConfigureCloudinaryService(Configuration)
                         .ConfigureEmailSetUp()
                         .ConfigureHttpCachingProfiles()
-                        .AddSpaStaticFiles(spa =>
-                        {
-                            spa.RootPath = "wwwroot";
-                        });
+                        .RemoveNull204Formatter();                        
+                        //.AddSpaStaticFiles(spa =>
+                        //{
+                        //    spa.RootPath = "wwwroot";
+                        //});
             }
             catch (Exception ex)
             {
@@ -96,41 +98,42 @@ namespace HealthyNutGuysAPI
                 }
 
                 // Middleware has to be registered first, otherwise we get a bearer challenge 401 error
-                app.UseMiddleware<JwtBearerMiddleware>()                                        
+                app.UseMiddleware<JwtBearerMiddleware>()
                     .UseRouting()
                     .UseCors("AllowAll")
                     .UseAuthentication()
-                    .SeedDatabase()
-                    .UseHttpsRedirection()
-                    .UseSecurityHeaders();
+                    .SeedDatabase();
+                //.UseHttpsRedirection()
+                //.UseSecurityHeaders();
 
-                app.UseSpaStaticFiles(new StaticFileOptions
-                {
-                    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts")),
-                    RequestPath = "/wwwroot/fonts",
-                    OnPrepareResponse = ctx =>
-                    {
-                        ctx.Context.Response.Headers.Append("Cache-Control", "private, max-age=86400, stale-while-revalidate=604800");
-                    }
-                });
+                //app.UseSpaStaticFiles(new StaticFileOptions
+                //{
+                //    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fonts")),
+                //    RequestPath = "/wwwroot/fonts",
+                //    OnPrepareResponse = ctx =>
+                //    {
+                //        ctx.Context.Response.Headers.Append("Cache-Control", "private, max-age=86400, stale-while-revalidate=604800");
+                //    }
+                //});
 
-                app.UseSpaStaticFiles(new StaticFileOptions
-                {
-                    OnPrepareResponse = ctx =>
-                    {
-                        ctx.Context.Response.Headers.Append("Cache-Control", "max-age=31536000");
-                    }
-                });
+                //app.UseSpaStaticFiles(new StaticFileOptions
+                //{
+                //    OnPrepareResponse = ctx =>
+                //    {
+                //        ctx.Context.Response.Headers.Append("Cache-Control", "max-age=31536000");
+                //    }
+                //});
 
-                app.UseSpa(spa =>
-                {
-                    spa.Options.SourcePath = "wwwroot";
-                });
+                //app.UseSpa(spa =>
+                //{
+                //    spa.Options.SourcePath = "wwwroot";
+                //});
 
                 // may be unecessary 
-                //app.UseEndpoints(endpoints => {
-                //    endpoints.MapControllers();
-                //});
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllers();
+                });
             }
             catch (Exception ex)
             {
