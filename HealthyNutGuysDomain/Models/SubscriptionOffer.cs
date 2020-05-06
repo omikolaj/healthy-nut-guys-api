@@ -1,6 +1,7 @@
 ﻿using HealthyNutGuysDomain.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
@@ -13,9 +14,11 @@ namespace HealthyNutGuysDomain.Models
         public decimal DiscountValue { get; set; }
         public string? SpecialOfferId { get; set; }
         public DateTime? ExpireDate { get; set; }
-        public DateTime? StartDate { get; set; }        
+        public DateTime? StartDate { get; set; }
+        [Required]
         public Frequency Frequency { get; set; }
-        public bool? Deleted { get; set; } = false;
+        public bool Deleted { get; set; } = false;
+        [Required]
         public OfferType Type { get; set; }        
         public bool StandardOffer { get; set; } = true;
         public SpecialOffer SpecialOffer { get; set; }

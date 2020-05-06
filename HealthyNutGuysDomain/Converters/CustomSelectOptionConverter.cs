@@ -7,17 +7,17 @@ using System.Text;
 
 namespace HealthyNutGuysDomain.Converters
 {
-    public static class SelectOptionConverter
+    public static class CustomSelectOptionConverter
     {
-        public static SelectOptionViewModel Convert(SelectOption option)
+        public static CustomSelectOptionViewModel Convert(CustomSelectOption option)
         {
-            SelectOptionViewModel model = new SelectOptionViewModel();            
+            CustomSelectOptionViewModel model = new CustomSelectOptionViewModel();
             model.Option = option.Option;
 
             return model;
         }
 
-        public static List<SelectOptionViewModel> ConvertList(IEnumerable<SelectOption> options)
+        public static List<CustomSelectOptionViewModel> ConvertList(IEnumerable<CustomSelectOption> options)
         {
             return options.Select(option => Convert(option)).ToList();
         }

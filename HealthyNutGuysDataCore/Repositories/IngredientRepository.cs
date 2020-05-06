@@ -10,19 +10,18 @@ using System.Threading.Tasks;
 
 namespace HealthyNutGuysDataCore.Repositories
 {
-    public class SpecialOfferRepository : ISpecialOfferRepository
+    public class IngredientRepository : IIngredientRepository
     {
-        public SpecialOfferRepository(HealthyNutGuysContext dbContext)
+        public IngredientRepository(HealthyNutGuysContext dbContext)
         {
             this._dbContext = dbContext;
         }
 
         private readonly HealthyNutGuysContext _dbContext;
 
-        public async Task<List<SpecialOffer>> GetAllAsync(CancellationToken ct = default)
+        public async Task<List<Ingredient>> GetAllByMixCategoryIdAsync(string id, CancellationToken ct = default)
         {
-            return await this._dbContext.SpecialOffers.Where(o => o.Deleted == false).ToListAsync(ct);
+            return await this._dbContext.Ingredients.Where(ingredient => ingredient.Deleted == false && ingredient.MixCategoryId == id).ToListAsync(ct);
         }
-
     }
 }

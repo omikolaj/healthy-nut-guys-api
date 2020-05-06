@@ -21,7 +21,10 @@ namespace HealthyNutGuysDataCore.Repositories
 
         public async Task<List<MixCategory>> GetAllByProductIdAsync(string id, CancellationToken ct = default)
         {
-            return await this._dbContext.MixCategories.Include(m => m.Products).Where(p => p.Id == id).ToListAsync(ct);
+            return await this._dbContext.MixCategories.Where(m => m.CustomProductId == id)
+                                                        .Include(m => m.Ingredients)
+                                                        .Where(m => m.Deleted == false)
+                                                        .ToListAsync(ct);
         }
     }
 }

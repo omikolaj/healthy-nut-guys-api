@@ -2,6 +2,7 @@
 using HealthyNutGuysDomain.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace HealthyNutGuysDomain.Converters
@@ -19,6 +20,11 @@ namespace HealthyNutGuysDomain.Converters
             model.DisplayMessage = specialOffer.DisplayMessage;
             
             return model;
+        }
+
+        public static List<SpecialOfferViewModel> ConvertList(IEnumerable<SpecialOffer> specialOffers)
+        {
+            return specialOffers.Select(offer => Convert(offer)).ToList();
         }
     }
 }

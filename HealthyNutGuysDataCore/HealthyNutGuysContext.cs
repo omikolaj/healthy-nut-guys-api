@@ -7,6 +7,7 @@ using HealthyNutGuysDomain.Models.Gallery;
 using HealthyNutGuysDomain.Models.Merchandise;
 using HealthyNutGuysDomain.Models.Schedule;
 using HealthyNutGuysDomain.Models.TeamSignUp;
+using HealthyNutGuysDataCore.Configurations;
 
 namespace HealthyNutGuysDataCore
 {
@@ -23,7 +24,7 @@ namespace HealthyNutGuysDataCore
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<CustomProduct> CustomSacks { get; set; }        
+        public DbSet<CustomProduct> CustomProducts { get; set; }        
         public DbSet<ProductDetails> ProductDetails { get; set; }
         public DbSet<PromoCode> PromoCodes { get; set; }
         public DbSet<Tag> Tags { get; set; }            
@@ -39,9 +40,8 @@ namespace HealthyNutGuysDataCore
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<Tag>()
-                .HasOne<Product>()
-                .WithMany(_ => _.Tags);
+
+            new TagConfiguration(builder.Entity<Tag>());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

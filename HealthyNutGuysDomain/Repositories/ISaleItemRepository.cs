@@ -10,5 +10,7 @@ namespace HealthyNutGuysDomain.Repositories
     public interface ISaleItemRepository
     {
         Task<List<SaleItem>> GetByProductId(string id, CancellationToken ct = default);
+
+        Task<List<SaleItem>> GetByCustomProductId(string id, CancellationToken ct = default);
     }
 }

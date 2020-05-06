@@ -13,7 +13,7 @@ namespace HealthyNutGuysDomain.Models
         public string AddressId { get; set; }
         public DateTime Created { get; set; } = DateTime.Now;
         public DateTime Modified { get; set; }
-        public bool? Deleted { get; set; } = false;
+        public bool Deleted { get; set; } = false;
         public int Status { get; set; }
         [Column(TypeName = "decimal(5,2)")]
         public decimal Amount { get; set; }

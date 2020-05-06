@@ -29,6 +29,9 @@ namespace HealthyNutGuysDomain.Supervisor
         private readonly ISpecialOfferRepository _specialOfferRepository;
         private readonly IProductRepository _productRepository;
         private readonly ISaleItemRepository _saleItemRepository;
+        private readonly ICustomProductRepository _customProductRepository;
+        private readonly IMixCategoryRepository _mixCategoryRepository;
+        private readonly IIngredientRepository _ingredientRepository;
 
         #endregion
 
@@ -48,7 +51,10 @@ namespace HealthyNutGuysDomain.Supervisor
         IPromoCodeRepository promoCodeRepository,
         ISpecialOfferRepository specialOfferRepository,
         IProductRepository productRepository,
-        ISaleItemRepository saleItemRepository
+        ISaleItemRepository saleItemRepository,
+        ICustomProductRepository customProductRepository,
+        IMixCategoryRepository mixCategoryRepository,
+        IIngredientRepository ingredientRepository
       )
         {
             this._applicationUserRepository = applicationUserRepository;
@@ -66,6 +72,9 @@ namespace HealthyNutGuysDomain.Supervisor
             this._specialOfferRepository = specialOfferRepository;
             this._productRepository = productRepository;
             this._saleItemRepository = saleItemRepository;
+            this._customProductRepository = customProductRepository;
+            this._mixCategoryRepository = mixCategoryRepository;
+            this._ingredientRepository = ingredientRepository;
         }
 
         #endregion

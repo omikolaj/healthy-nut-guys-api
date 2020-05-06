@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace HealthyNutGuysDomain.Repositories
 {
-    public interface ISpecialOfferRepository
+    public interface ICustomProductRepository
     {
-        Task<List<SpecialOffer>> GetAllAsync(CancellationToken ct = default);
-
+        Task<CustomProduct> GetCustomSackAsync(CancellationToken ct = default);
     }
 }

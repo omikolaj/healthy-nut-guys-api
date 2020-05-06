@@ -19,7 +19,7 @@ namespace HealthyNutGuysDomain.Converters
             model.Subtitle = product.Subtitle;
             model.ImageSrc = product?.ImageSrc;
             model.Price = product?.Price;
-            model.IsOnSale = product.IsOnSale;            
+            model.IsOnSale = product.IsOnSale;
             model.ProductDetails = ProductDetailsConverter.ConvertList(product.ProductDetails);
             model.Category = CategoryConverter.Convert(product?.Category);
             model.Tags = TagConverter.ConvertList(product?.Tags);            

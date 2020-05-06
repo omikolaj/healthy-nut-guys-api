@@ -21,7 +21,12 @@ namespace HealthyNutGuysDataCore.Repositories
 
         public async Task<List<SaleItem>> GetByProductId(string id, CancellationToken ct = default)
         {
-            return await this._dbContext.SaleItems.Where(saleItem => saleItem.ProductId == id).ToListAsync();
+            return await this._dbContext.SaleItems.Where(saleItem => saleItem.ProductId == id && saleItem.Deleted == false).ToListAsync();
+        }
+
+        public async Task<List<SaleItem>> GetByCustomProductId(string id, CancellationToken ct = default)
+        {
+            return await this._dbContext.SaleItems.Where(saleItem => saleItem.CustomProductId == id && saleItem.Deleted == false).ToListAsync();
         }
     }
 }

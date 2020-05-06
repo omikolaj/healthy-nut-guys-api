@@ -28,7 +28,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Category nutCategory = new Category()
             {
-                Id = "1",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Nut Sacks"
             };
 
@@ -37,25 +37,25 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Tag nutsTag = new Tag
             {
-                Id = "2",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Nuts"
             };
 
             Tag fruitsTag = new Tag
             {
-                Id = "3",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Fruits"
             };
 
             Tag seedsTag = new Tag
             {
-                Id = "4",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Seeds"
             };
 
             Tag granolaTag = new Tag
             {
-                Id = "5",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Granola"
             };
 
@@ -75,7 +75,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Product succulentSack = new Product()
             {
-                Id = "1",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Succulent Nut Sack",
                 Subtitle = "Healthy Nut Guys",
                 Description = "This savory, Succulent Nut Sack will leave you drooling! A decadent mix of white and milk chocolate chips, raisins, dried cranberries, peanuts, almonds, and cashews. As if that wasn't enough to make you nut...I mean, go nuts...we've topped it off with our delicious honey cashew vanilla granola. This organic Succulent Nut Sack is the thing of your wildest trail mix dreams!",
@@ -91,9 +91,9 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SaleItem succulentSackSale = new SaleItem
             {
-                Id = "1",
+                Id = Guid.NewGuid().ToString(),
                 ProductId = succulentSack.Id,
-                ExpireDate = DateTime.Today.AddDays(100),
+                ExpireDate = DateTime.Now.AddDays(100),
                 Type = OfferType.PercentOff, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
                 DiscountValue = 5,
             };
@@ -103,7 +103,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             ProductDetails succulentDetails4oz = new ProductDetails()
             {
-                Id = "1",
+                Id = Guid.NewGuid().ToString(),
                 ProductId = succulentSack.Id,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/succulent_nut_sack_label_s2glru.png",
             };
@@ -113,14 +113,14 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SelectOption option4oz = new SelectOption
             {
-                Id = "2",
+                Id = Guid.NewGuid().ToString(),
                 ProductDetailsId = succulentDetails4oz.Id,
                 Option = "4oz"
             };
 
             ProductDetails succulentDetails8oz = new ProductDetails()
             {
-                Id = "3",
+                Id = Guid.NewGuid().ToString(),
                 ProductId = succulentSack.Id,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/succulent_nut_sack_label_s2glru.png",
             };
@@ -130,14 +130,14 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SelectOption option8oz = new SelectOption
             {
-                Id = "4",
+                Id = Guid.NewGuid().ToString(),
                 ProductDetailsId = succulentDetails8oz.Id,
                 Option = "8oz"
             };
 
             ProductDetails succulentDetails12oz = new ProductDetails()
             {
-                Id = "5",
+                Id = Guid.NewGuid().ToString(),
                 ProductId = succulentSack.Id,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/succulent_nut_sack_label_s2glru.png",
             };
@@ -147,14 +147,14 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SelectOption option12oz = new SelectOption
             {
-                Id = "6",
+                Id = Guid.NewGuid().ToString(),
                 ProductDetailsId = succulentDetails12oz.Id,
                 Option = "12oz"
             };
 
             ProductDetails succulentDetails16oz = new ProductDetails()
             {
-                Id = "7",
+                Id = Guid.NewGuid().ToString(),
                 ProductId = succulentSack.Id,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/succulent_nut_sack_label_s2glru.png",
             };
@@ -164,7 +164,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SelectOption option16oz = new SelectOption
             {
-                Id = "8",
+                Id = Guid.NewGuid().ToString(),
                 ProductDetailsId = succulentDetails16oz.Id,
                 Option = "16oz"
             };
@@ -185,25 +185,25 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Tag ketoSackNutsTag = new Tag
             {
-                Id = "99",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Nuts"
             };
 
             Tag ketoSackFruitsTag = new Tag
             {
-                Id = "103",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Fruits"
             };
 
             Tag ketoSackSeedsTag = new Tag
             {
-                Id = "104",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Seeds"
             };
 
             Tag ketoSackGranolaTag = new Tag
             {
-                Id = "105",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Granola"
             };
 
@@ -223,7 +223,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Product ketoSack = new Product()
             {
-                Id = "9",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Keto Nut Sack",
                 Subtitle = "Healthy Nut Guys",
                 Description = "This blend of nuts and seeds is perfect for your ketogenic lifestyle! The nut blend of peanuts, Brazil nuts, almonds, and pecans mixed with sesame and sunflower seeds will help keep you in ketosis while providing essential fats, vitamins, and antioxidants. This organic, high-fiber Nut Sack will keep you full, ripped, and craving more of our nuts!",
@@ -239,9 +239,9 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SaleItem ketoSaleItem = new SaleItem
             {
-                Id = "10",
+                Id = Guid.NewGuid().ToString(),
                 ProductId = ketoSack.Id,
-                ExpireDate = DateTime.Today.AddDays(100),
+                ExpireDate = DateTime.Now.AddDays(100),
                 Type = OfferType.AmountOff, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
                 DiscountValue = (decimal)2.99
             };
@@ -251,7 +251,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             ProductDetails ketoSackDetails4oz = new ProductDetails()
             {
-                Id = "11",
+                Id = Guid.NewGuid().ToString(),
                 ProductId = ketoSack.Id,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533594/thng/keto_nut_sack_label_tdvpid.png",
             };
@@ -261,14 +261,14 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SelectOption ketoOption4oz = new SelectOption
             {
-                Id = "12",
+                Id = Guid.NewGuid().ToString(),
                 ProductDetailsId = ketoSackDetails4oz.Id,
                 Option = "4oz"
             };
 
             ProductDetails ketoSackDetails8oz = new ProductDetails()
             {
-                Id = "13",
+                Id = Guid.NewGuid().ToString(),
                 ProductId = ketoSack.Id,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533594/thng/keto_nut_sack_label_tdvpid.png",
             };
@@ -278,14 +278,14 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SelectOption ketoOption8oz = new SelectOption
             {
-                Id = "14",
+                Id = Guid.NewGuid().ToString(),
                 ProductDetailsId = ketoSackDetails8oz.Id,
                 Option = "8oz"
             };
 
             ProductDetails ketoSackDetails12oz = new ProductDetails()
             {
-                Id = "15",
+                Id = Guid.NewGuid().ToString(),
                 ProductId = ketoSack.Id,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533594/thng/keto_nut_sack_label_tdvpid.png",
             };
@@ -295,14 +295,14 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SelectOption ketoOption12oz = new SelectOption
             {
-                Id = "16",
+                Id = Guid.NewGuid().ToString(),
                 ProductDetailsId = ketoSackDetails12oz.Id,
                 Option = "12oz"
             };
 
             ProductDetails ketoSackDetails16oz = new ProductDetails()
             {
-                Id = "17",
+                Id = Guid.NewGuid().ToString(),
                 ProductId = ketoSack.Id,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533594/thng/keto_nut_sack_label_tdvpid.png",
             };
@@ -312,7 +312,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SelectOption ketoOption16oz = new SelectOption
             {
-                Id = "18",
+                Id = Guid.NewGuid().ToString(),
                 ProductDetailsId = ketoSackDetails16oz.Id,
                 Option = "16oz"
             };
@@ -333,25 +333,25 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Tag energySackNutsTag = new Tag
             {
-                Id = "499",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Nuts"
             };
 
             Tag energySackFruitsTag = new Tag
             {
-                Id = "4103",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Fruits"
             };
 
             Tag energySackSeedsTag = new Tag
             {
-                Id = "4104",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Seeds"
             };
 
             Tag energySackGranolaTag = new Tag
             {
-                Id = "4105",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Granola"
             };
 
@@ -365,7 +365,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Product energySack = new Product()
             {
-                Id = "19",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Energy Nut Sack",
                 Subtitle = "Healthy Nut Guys",
                 Description = "Energize your Nut Sack with this awesome mix! Almonds, peanuts, and cashews provide long-lasting energy (you're welcome ladies) while the bananas, apple rings, and raisins will provide a quick boost in energy levels! For even more energy, we've topped it off with coconut, dark chocolate chips, and pumpkin seeds. All ingredients are organic so you can enjoy the natural stamina without the crash.",
@@ -381,9 +381,9 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SaleItem energySackSale = new SaleItem
             {
-                Id = "20",
+                Id = Guid.NewGuid().ToString(),
                 ProductId = energySack.Id,
-                ExpireDate = DateTime.Today.AddDays(29),
+                ExpireDate = DateTime.Now.AddDays(29),
                 Type = OfferType.FreeShipping, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code               
             };
 
@@ -392,7 +392,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             ProductDetails energySackDetails4oz = new ProductDetails()
             {
-                Id = "21",
+                Id = Guid.NewGuid().ToString(),
                 ProductId = energySack.Id,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/energy_nut_sack_label_y64lpg.png",
             };
@@ -402,14 +402,14 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SelectOption energyOption4oz = new SelectOption
             {
-                Id = "22",
+                Id = Guid.NewGuid().ToString(),
                 ProductDetailsId = energySackDetails4oz.Id,
                 Option = "4oz"
             };
 
             ProductDetails energySackDetails8oz = new ProductDetails()
             {
-                Id = "23",
+                Id = Guid.NewGuid().ToString(),
                 ProductId = energySack.Id,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/energy_nut_sack_label_y64lpg.png",
             };
@@ -419,14 +419,14 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SelectOption energyOption8oz = new SelectOption
             {
-                Id = "24",
+                Id = Guid.NewGuid().ToString(),
                 ProductDetailsId = energySackDetails8oz.Id,
                 Option = "8oz"
             };
 
             ProductDetails energySackDetails12oz = new ProductDetails()
             {
-                Id = "25",
+                Id = Guid.NewGuid().ToString(),
                 ProductId = energySack.Id,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/energy_nut_sack_label_y64lpg.png",
             };
@@ -436,14 +436,14 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SelectOption energyOption12oz = new SelectOption
             {
-                Id = "26",
+                Id = Guid.NewGuid().ToString(),
                 ProductDetailsId = energySackDetails12oz.Id,
                 Option = "12oz"
             };
 
             ProductDetails energySackDetails16oz = new ProductDetails()
             {
-                Id = "27",
+                Id = Guid.NewGuid().ToString(),
                 ProductId = energySack.Id,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/energy_nut_sack_label_y64lpg.png",
             };
@@ -453,7 +453,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SelectOption energyOption16oz = new SelectOption
             {
-                Id = "28",
+                Id = Guid.NewGuid().ToString(),
                 ProductDetailsId = energySackDetails16oz.Id,
                 Option = "16oz"
             };
@@ -474,25 +474,25 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Tag customSackNutsTag = new Tag
             {
-                Id = "799",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Nuts"
             };
 
             Tag customSackFruitsTag = new Tag
             {
-                Id = "7103",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Fruits"
             };
 
             Tag customSackSeedsTag = new Tag
             {
-                Id = "7104",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Seeds"
             };
 
             Tag customSackGranolaTag = new Tag
             {
-                Id = "7105",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Granola"
             };
 
@@ -506,45 +506,57 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             CustomProduct customSack = new CustomProduct()
             {
-                Id = "29",
+                Id = Guid.NewGuid().ToString(),
                 Name = "Custom Nut Sack",
                 Subtitle = "Healthy Nut Guys",
+                Type = CustomProductType.CustomSack,
                 Description = "You tell us how you want our Nut Sack! With the Custom Nut Sack, you get to choose from all of our ingredients to create the Nut Sack you've always wanted! As always, we will fill this Nut Sack with only organic ingredients to provide you with the highest quality, best tasting Nut Sack you have ever had!",
                 Price = (decimal)17.99,
                 ImageSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/custom_nut_sack_zfuek1.png",
                 CategoryId = nutCategory.Id,
-                IsOnSale = false,
+                IsOnSale = true,
                 Tags = customSackTags
             };
 
-            dbContext.CustomSacks.Add(customSack);
+            dbContext.CustomProducts.Add(customSack);
+            dbContext.SaveChanges();
+
+            SaleItem customSackSale = new SaleItem
+            {
+                Id = Guid.NewGuid().ToString(),
+                CustomProductId = customSack.Id,
+                Type = OfferType.FreeShipping,
+                ExpireDate = DateTime.Now.AddDays(45)
+            };
+
+            dbContext.SaleItems.Add(customSackSale);
             dbContext.SaveChanges();
 
             CustomSelectOption customSack4oz = new CustomSelectOption
             {
-                Id = "30",
-                CustomSackId = customSack.Id,
+                Id = Guid.NewGuid().ToString(),
+                CustomProductId = customSack.Id,
                 Option = "4oz"
             };
 
             CustomSelectOption customSack8oz = new CustomSelectOption
             {
-                Id = "31",
-                CustomSackId = customSack.Id,
+                Id = Guid.NewGuid().ToString(),
+                CustomProductId = customSack.Id,
                 Option = "8oz"
             };
 
             CustomSelectOption customSack12oz = new CustomSelectOption
             {
-                Id = "32",
-                CustomSackId = customSack.Id,
+                Id = Guid.NewGuid().ToString(),
+                CustomProductId = customSack.Id,
                 Option = "12oz"
             };
 
             CustomSelectOption customSack16oz = new CustomSelectOption
             {
-                Id = "33",
-                CustomSackId = customSack.Id,
+                Id = Guid.NewGuid().ToString(),
+                CustomProductId = customSack.Id,
                 Option = "16oz"
             };
 
@@ -564,8 +576,9 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             MixCategory nuts = new MixCategory
             {
-                Id = "34",
+                Id = Guid.NewGuid().ToString(),
                 InStock = true,
+                CustomProductId = customSack.Id,
                 Name = "Nuts",
                 Type = MixCategoryType.Nuts
             };
@@ -575,7 +588,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient almonds = new Ingredient
             {
-                Id = "35",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = nuts.Id,
                 Name = "Almonds",
                 InStock = true
@@ -583,7 +596,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient brazilNuts = new Ingredient
             {
-                Id = "36",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = nuts.Id,
                 Name = "Brazil Nuts",
                 InStock = true
@@ -591,7 +604,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient cachews = new Ingredient
             {
-                Id = "37",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = nuts.Id,
                 Name = "Cachews",
                 InStock = true
@@ -599,7 +612,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient peanuts = new Ingredient
             {
-                Id = "38",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = nuts.Id,
                 Name = "Peanuts",
                 InStock = true
@@ -607,7 +620,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient pecans = new Ingredient
             {
-                Id = "39",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = nuts.Id,
                 Name = "Pecans",
                 InStock = true
@@ -615,7 +628,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient pistachios = new Ingredient
             {
-                Id = "40",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = nuts.Id,
                 Name = "Pistachios",
                 InStock = true
@@ -623,7 +636,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient walnuts = new Ingredient
             {
-                Id = "41",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = nuts.Id,
                 Name = "Walnuts",
                 InStock = true
@@ -648,8 +661,9 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             MixCategory fruits = new MixCategory
             {
-                Id = "42",
+                Id = Guid.NewGuid().ToString(),
                 InStock = true,
+                CustomProductId = customSack.Id,
                 Name = "Fruits",
                 Type = MixCategoryType.Fruits
             };
@@ -659,7 +673,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient appleRings = new Ingredient
             {
-                Id = "43",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = fruits.Id,
                 Name = "Apple Rings",
                 InStock = true
@@ -667,7 +681,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient apricots = new Ingredient
             {
-                Id = "44",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = fruits.Id,
                 Name = "Appricots",
                 InStock = true
@@ -675,7 +689,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient bananas = new Ingredient
             {
-                Id = "45",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = fruits.Id,
                 Name = "Bananas",
                 InStock = true
@@ -683,7 +697,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient cranberries = new Ingredient
             {
-                Id = "46",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = fruits.Id,
                 Name = "Cranberries with cane sugar",
                 InStock = true
@@ -691,7 +705,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient coconut = new Ingredient
             {
-                Id = "47",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = fruits.Id,
                 Name = "Coconut",
                 InStock = true
@@ -699,7 +713,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient dates = new Ingredient
             {
-                Id = "48",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = fruits.Id,
                 Name = "Dates",
                 InStock = true
@@ -707,7 +721,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient mango = new Ingredient
             {
-                Id = "49",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = fruits.Id,
                 Name = "Mango",
                 InStock = true
@@ -715,7 +729,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient peaches = new Ingredient
             {
-                Id = "50",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = fruits.Id,
                 Name = "Peaches",
                 InStock = true
@@ -723,7 +737,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient pineapple = new Ingredient
             {
-                Id = "51",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = fruits.Id,
                 Name = "Pineapple",
                 InStock = true
@@ -731,7 +745,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient raisins = new Ingredient
             {
-                Id = "52",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = fruits.Id,
                 Name = "Raisins",
                 InStock = true
@@ -739,7 +753,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient sweetCherries = new Ingredient
             {
-                Id = "53",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = fruits.Id,
                 Name = "Sweet Cherries",
                 InStock = true
@@ -768,8 +782,9 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             MixCategory seeds = new MixCategory
             {
-                Id = "54",
+                Id = Guid.NewGuid().ToString(),
                 InStock = true,
+                CustomProductId = customSack.Id,
                 Name = "Seeds",
                 Type = MixCategoryType.Seeds
             };
@@ -779,7 +794,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient flax = new Ingredient
             {
-                Id = "55",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = seeds.Id,
                 Name = "Flax",
                 InStock = true
@@ -787,7 +802,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient hemp = new Ingredient
             {
-                Id = "56",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = seeds.Id,
                 Name = "Hemp",
                 InStock = true
@@ -795,7 +810,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient pumpkin = new Ingredient
             {
-                Id = "57",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = seeds.Id,
                 Name = "Pumpkin (hulled)",
                 InStock = true
@@ -803,7 +818,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient sesame = new Ingredient
             {
-                Id = "58",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = seeds.Id,
                 Name = "Sesame (hulled)",
                 InStock = true
@@ -811,7 +826,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient sunflower = new Ingredient
             {
-                Id = "59",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = seeds.Id,
                 Name = "Sunflower (hulled)",
                 InStock = true
@@ -834,8 +849,9 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             MixCategory granola = new MixCategory
             {
-                Id = "60",
+                Id = Guid.NewGuid().ToString(),
                 InStock = true,
+                CustomProductId = customSack.Id,
                 Name = "Granola",
                 Type = MixCategoryType.Granola
             };
@@ -845,7 +861,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient glutenFreeGranola = new Ingredient
             {
-                Id = "61",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = granola.Id,
                 Name = "Gluten Free Granola",
                 InStock = true
@@ -853,7 +869,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient honeyCachewVanila = new Ingredient
             {
-                Id = "62",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = granola.Id,
                 Name = "Honey Cachew Vanila",
                 InStock = true
@@ -861,7 +877,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             Ingredient chocolateHazelnutFig = new Ingredient
             {
-                Id = "63",
+                Id = Guid.NewGuid().ToString(),
                 MixCategoryId = granola.Id,
                 Name = "Chocolate Hazelnut Fig",
                 InStock = true
@@ -890,7 +906,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             PromoCode promoCode = new PromoCode
             {
-                Id = "64",
+                Id = Guid.NewGuid().ToString(),
                 Type = OfferType.PercentOff, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
                 Code = "4321",
                 DiscountValue = 5
@@ -901,7 +917,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SpecialOffer specialOffer = new SpecialOffer
             {
-                Id = "65",
+                Id = Guid.NewGuid().ToString(),
                 PromoCodeId = promoCode.Id,
                 ExpireDate = DateTime.Now.AddDays(-100),
                 Type = OfferType.PromoCode, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code,                
@@ -909,7 +925,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SubscriptionOffer weeklySubscription = new SubscriptionOffer
             {
-                Id = "66",
+                Id = Guid.NewGuid().ToString(),
                 Frequency = Frequency.Weekly, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,
                 Type = OfferType.PercentOff, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
                 DiscountValue = 20
@@ -917,7 +933,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SubscriptionOffer biWeeklySubscription = new SubscriptionOffer
             {
-                Id = "67",
+                Id = Guid.NewGuid().ToString(),
                 Frequency = Frequency.Biweekly, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,
                 Type = OfferType.PercentOff, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
                 DiscountValue = 20
@@ -925,7 +941,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SubscriptionOffer semiMonthlySubscription = new SubscriptionOffer
             {
-                Id = "68",
+                Id = Guid.NewGuid().ToString(),
                 Frequency = Frequency.SemiMonthly, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,
                 Type = OfferType.PercentOff, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
                 DiscountValue = 20
@@ -933,7 +949,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SubscriptionOffer monthlySubscription = new SubscriptionOffer
             {
-                Id = "69",
+                Id = Guid.NewGuid().ToString(),
                 Frequency = Frequency.Monthly, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,
                 Type = OfferType.PercentOff, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
                 DiscountValue = 20
@@ -941,7 +957,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SubscriptionOffer quarterlyMonthlySubscription = new SubscriptionOffer
             {
-                Id = "70",
+                Id = Guid.NewGuid().ToString(),
                 Frequency = Frequency.Quarterly, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,
                 Type = OfferType.PercentOff, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
                 DiscountValue = 20
@@ -949,7 +965,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SubscriptionOffer limitedExpiredTimeSubscription = new SubscriptionOffer
             {
-                Id = "71",
+                Id = Guid.NewGuid().ToString(),
                 Frequency = Frequency.SemiMonthly, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,
                 Type = OfferType.PercentOff, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
                 DiscountValue = 25,
@@ -976,7 +992,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SubscriptionOffer limitedTimeSubscriptionWeekly = new SubscriptionOffer
             {
-                Id = "72",
+                Id = Guid.NewGuid().ToString(),
                 Frequency = Frequency.Weekly, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,                                
                 Type = OfferType.Special, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code, 6 special offer
                 StandardOffer = false,
@@ -987,7 +1003,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SubscriptionOffer limitedTimeSubscriptionBiWeekly = new SubscriptionOffer
             {
-                Id = "73",
+                Id = Guid.NewGuid().ToString(),
                 Frequency = Frequency.Biweekly, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,                                
                 Type = OfferType.Special, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code, 6 special offer
                 StandardOffer = false,
@@ -998,7 +1014,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SubscriptionOffer limitedTimeSubscriptionSemiMonthly = new SubscriptionOffer
             {
-                Id = "74",
+                Id = Guid.NewGuid().ToString(),
                 Frequency = Frequency.SemiMonthly, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,                                
                 Type = OfferType.Special, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code, 6 special offer
                 StandardOffer = false,
@@ -1009,7 +1025,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SubscriptionOffer limitedTimeMonthly = new SubscriptionOffer
             {
-                Id = "75",
+                Id = Guid.NewGuid().ToString(),
                 Frequency = Frequency.SemiMonthly, // 1 = weekly, 2 = bi-weekly, 3 = semi-monthly, 4 = monthly, 5 = quarterly,                                
                 Type = OfferType.Special, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code, 6 special offer
                 StandardOffer = false,
@@ -1034,7 +1050,8 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SpecialOffer freeShippingNextOrder = new SpecialOffer
             {
-                Id = "76",
+                Id = Guid.NewGuid().ToString(),
+                ExpireDate = DateTime.Now.AddDays(100),
                 Type = OfferType.FreeShipping, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code,       
                 AppliesNextOrder = true,
                 Scope = OfferScope.Subscription, //1 = store wide, 2 = specific to subscription offer
@@ -1045,7 +1062,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             PromoCode shopWidePromoCode = new PromoCode
             {
-                Id = "1s232",
+                Id = Guid.NewGuid().ToString(),
                 Code = "123123",
                 ExpireDate = DateTime.Now.AddDays(15),
                 Type = OfferType.PercentOff,
@@ -1057,7 +1074,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             SpecialOffer storeWidePromoCode = new SpecialOffer
             {
-                Id = "7456",
+                Id = Guid.NewGuid().ToString(),
                 PromoCodeId = shopWidePromoCode.Id,
                 ExpireDate = DateTime.Now.AddDays(150),
                 Type = OfferType.PromoCode, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code,       
@@ -1078,7 +1095,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             UserSubscription userSubscription = new UserSubscription
             {
-                Id = "77",
+                Id = Guid.NewGuid().ToString(),
                 ApplicationUserId = sysAdmin.Id,
                 SubscriptionOfferId = limitedExpiredTimeSubscription.Id,
                 Frequency = limitedTimeSubscriptionWeekly.Frequency,

@@ -25,7 +25,13 @@ namespace HealthyNutGuysAPI.Controllers
         [HttpGet("products")]
         public async Task<ActionResult<List<ProductViewModel>>> GetProducts(CancellationToken ct = default)
         {
-            return await this._supervisor.GetAllProducts(ct);
+            return await this._supervisor.GetAllProductsAsync(ct);
+        }
+
+        [HttpGet("custom-products")]
+        public async Task<ActionResult<List<CustomProductViewModel>>> GetCustomProducts(CancellationToken ct = default)
+        {
+            return await this._supervisor.GetAllCustomProdctsAsync(ct);
         }
 
         [HttpGet("offer")]

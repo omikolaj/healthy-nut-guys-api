@@ -16,7 +16,7 @@ namespace HealthyNutGuysDomain.Supervisor
         {
             // retrieve all special offers
             List<SpecialOffer> specialOffers = await this._specialOfferRepository.GetAllAsync(ct);
-            List<SpecialOffer> shopOffers = specialOffers.Where(o => o.Scope == OfferScope.Shop && o.ExpireDate > DateTime.Today).ToList();
+            List<SpecialOffer> shopOffers = specialOffers.Where(o => o.Scope == OfferScope.Shop && o.ExpireDate < DateTime.Now).ToList();
 
             SpecialOfferViewModel shopOffer = null;
             // if the count is greater than 1 then we have a problem, we only ever want to display one shop offer
@@ -30,7 +30,11 @@ namespace HealthyNutGuysDomain.Supervisor
                     if(String.IsNullOrEmpty(shopOffer.PromoCodeId) == false)
                     {
                         PromoCodeViewModel promoViewModel = PromoCodeConverter.Convert(await this._promoCodeRepository.GetByIdAsync(shopOffer.PromoCodeId, ct));
-                        shopOffer.PromoCode = promoViewModel;
+                        // check if promo is valid
+                        if(promoViewModel.ExpireDate > DateTime.Now)
+                        {
+                            shopOffer.PromoCode = promoViewModel;
+                        }                        
                     }                    
                 }
             }
@@ -38,7 +42,7 @@ namespace HealthyNutGuysDomain.Supervisor
             return shopOffer;
         }
 
-        public async Task<List<ProductViewModel>> GetAllProducts(CancellationToken ct = default)
+        public async Task<List<ProductViewModel>> GetAllProductsAsync(CancellationToken ct = default)
         {
             // retrieve all products that are available
             List<Product> products = await this._productRepository.GetAllAsync(ct);
@@ -52,14 +56,85 @@ namespace HealthyNutGuysDomain.Supervisor
 
                 if (product.IsOnSale == true)
                 {
-                    List<SaleItemViewModel> saleItemViews = SaleItemConverter.ConvertList(await this._saleItemRepository.GetByProductId(product.Id));
-                    productView.Sales = saleItemViews;
+                    List<SaleItem> sales = await this._saleItemRepository.GetByProductId(product.Id);
+                    List<SaleItemViewModel> saleViews = new List<SaleItemViewModel>();
+                    foreach (SaleItem sale in sales)
+                    {
+                        // if sale is valid
+                        if(sale.ExpireDate > DateTime.Now)
+                        {
+                            SaleItemViewModel saleView = SaleItemConverter.Convert(sale);
+                            saleViews.Add(saleView);
+                        }
+                    }
+                    productView.Sales = saleViews;
                 }
 
                 productsView.Add(productView);
             }
 
             return productsView;
+        }
+
+        public async Task<List<CustomProductViewModel>> GetAllCustomProdctsAsync(CancellationToken ct = default)
+        {
+            // get all custom products here
+            List<CustomProductViewModel> customProducts = new List<CustomProductViewModel>();
+            customProducts.Add(await this.GetCustomSackProdctAsync(ct));
+
+            return customProducts;
+        }
+
+
+        private async Task<CustomProductViewModel> GetCustomSackProdctAsync(CancellationToken ct = default)
+        {
+            CustomProduct customSack = await this._customProductRepository.GetCustomSackAsync(ct);
+            List<MixCategory> mixCategories = await this._mixCategoryRepository.GetAllByProductIdAsync(customSack.Id);            
+
+            foreach (MixCategory category in mixCategories)
+            {
+                category.Ingredients = await this._ingredientRepository.GetAllByMixCategoryIdAsync(category.Id, ct);
+            }
+
+            customSack.MixCategories = mixCategories;
+
+            CustomProductViewModel customSackView = CustomProductConverter.Convert(customSack);
+
+            if (customSackView.IsOnSale == true)
+            {
+                List<SaleItem> sales = await this._saleItemRepository.GetByCustomProductId(customSack.Id);
+                List<SaleItemViewModel> saleViews = new List<SaleItemViewModel>();
+                foreach (SaleItem sale in sales)
+                {
+                    SaleItemViewModel saleView = SaleItemConverter.Convert(sale);
+                    // if sale item is a promo code
+                    if (sale.Type == OfferType.PromoCode)
+                    {
+                        // ensure promo code id exists on 
+                        if (String.IsNullOrEmpty(sale.PromoCodeId) == false)
+                        {
+                            PromoCodeViewModel promoViewModel = PromoCodeConverter.Convert(await this._promoCodeRepository.GetByIdAsync(sale.PromoCodeId, ct));
+                            // check if promo is valid
+                            if (promoViewModel.ExpireDate > DateTime.Now)
+                            {
+                                saleView.PromoCode = promoViewModel;
+                                saleViews.Add(saleView);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // if sale is valid
+                        if (sale.ExpireDate > DateTime.Now)
+                        {                            
+                            saleViews.Add(saleView);
+                        }
+                    }                    
+                }
+                customSackView.Sales = saleViews;
+            }           
+
+            return customSackView;
         }
     }
 }

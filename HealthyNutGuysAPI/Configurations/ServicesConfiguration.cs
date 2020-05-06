@@ -35,7 +35,10 @@ namespace HealthyNutGuysAPI.Configurations
                     .AddScoped<IPromoCodeRepository, PromoCodeRepository>()
                     .AddScoped<ISpecialOfferRepository, SpecialOfferRepository>()
                     .AddScoped<IProductRepository, ProductRepository>()
-                    .AddScoped<ISaleItemRepository, SaleItemRepository>();
+                    .AddScoped<ISaleItemRepository, SaleItemRepository>()
+                    .AddScoped<IMixCategoryRepository, MixCategoryRepository>()
+                    .AddScoped<IIngredientRepository, IngredientRepository>()
+                    .AddScoped<ICustomProductRepository, CustomProductRepository>();
 
       return services;
     }

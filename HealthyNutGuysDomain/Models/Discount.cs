@@ -13,6 +13,6 @@ namespace HealthyNutGuysDomain.Models
         [Column(TypeName = "decimal(5,2)")]
         public decimal DiscountValue { get; set; }
         public DateTime Created { get; set; }
-        public DateTime ExpireDate { get; set; }
+        public DateTime? ExpireDate { get; set; }
     }
 }

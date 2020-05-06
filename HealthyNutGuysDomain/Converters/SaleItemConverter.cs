@@ -14,7 +14,14 @@ namespace HealthyNutGuysDomain.Converters
             SaleItemViewModel model = new SaleItemViewModel();
             model.Id = saleItem.Id;
             model.ProductId = saleItem.ProductId;
+            model.CustomProductId = saleItem.CustomProductId;
             model.ExpireDate = saleItem.ExpireDate;
+            model.PromoCodeId = saleItem?.PromoCodeId;
+            if (saleItem.PromoCodeId != null)
+                model.PromoCode = PromoCodeConverter.Convert(saleItem.PromoCode);
+            model.SpecialOfferId = saleItem?.SpecialOfferId;
+            if (saleItem.SpecialOfferId != null)
+                model.SpecialOffer = SpecialOfferConverter.Convert(saleItem.SpecialOffer);
             model.Type = saleItem.Type;
             model.DiscountValue = saleItem.DiscountValue;
 

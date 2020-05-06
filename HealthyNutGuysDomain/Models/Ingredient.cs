@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace HealthyNutGuysDomain.Models
@@ -8,9 +9,11 @@ namespace HealthyNutGuysDomain.Models
     {
         public string Id { get; set; }
         public string MixCategoryId { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public bool InStock { get; set; }
-        public bool? Deleted { get; set; } = false;
+        public bool Deleted { get; set; } = false;
         public MixCategory MixCategory { get; set; }
     }
 }
