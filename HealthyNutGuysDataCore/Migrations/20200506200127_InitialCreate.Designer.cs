@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthyNutGuysDataCore.Migrations
 {
     [DbContext(typeof(HealthyNutGuysContext))]
-    [Migration("20200506155117_InitialCreate")]
+    [Migration("20200506200127_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -218,8 +218,14 @@ namespace HealthyNutGuysDataCore.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("DiscountApplied")
+                        .HasColumnType("bit");
+
                     b.Property<string>("ImageSrc")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsInStock")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsOnSale")
                         .HasColumnType("bit");
@@ -251,9 +257,6 @@ namespace HealthyNutGuysDataCore.Migrations
 
                     b.Property<string>("CustomProductId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CustomSackId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Option")
                         .HasColumnType("nvarchar(max)");
@@ -424,8 +427,14 @@ namespace HealthyNutGuysDataCore.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("DiscountApplied")
+                        .HasColumnType("bit");
+
                     b.Property<string>("ImageSrc")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsInStock")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsOnSale")
                         .HasColumnType("bit");
@@ -511,11 +520,17 @@ namespace HealthyNutGuysDataCore.Migrations
                     b.Property<DateTime>("ExpireDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("ProductId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PromoCodeId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<decimal?>("SalePrice")
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<string>("SpecialOfferId")
                         .HasColumnType("nvarchar(450)");
@@ -579,8 +594,14 @@ namespace HealthyNutGuysDataCore.Migrations
                     b.Property<DateTime>("ExpireDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("PromoCodeId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<decimal?>("SalePrice")
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<int>("Scope")
                         .HasColumnType("int");
@@ -616,6 +637,12 @@ namespace HealthyNutGuysDataCore.Migrations
 
                     b.Property<int>("Frequency")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("SalePrice")
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<string>("SpecialOfferId")
                         .HasColumnType("nvarchar(450)");

@@ -96,6 +96,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 ExpireDate = DateTime.Now.AddDays(100),
                 Type = OfferType.PercentOff, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
                 DiscountValue = 5,
+                SalePrice = (decimal)15.99,
             };
 
             dbContext.SaleItems.Add(succulentSackSale);
@@ -243,7 +244,8 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 ProductId = ketoSack.Id,
                 ExpireDate = DateTime.Now.AddDays(100),
                 Type = OfferType.AmountOff, // 1 = free shipping, 2 = free stickers, 3 = $, 4 = %, 5 = promo code 
-                DiscountValue = (decimal)2.99
+                DiscountValue = (decimal)2.99,
+                SalePrice = (decimal)20.99
             };
 
             dbContext.SaleItems.Add(ketoSaleItem);
@@ -366,7 +368,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             Product energySack = new Product()
             {
                 Id = Guid.NewGuid().ToString(),
-                Name = "Energy Nut Sack",
+                Name = "Energy Nut Sack",                
                 Subtitle = "Healthy Nut Guys",
                 Description = "Energize your Nut Sack with this awesome mix! Almonds, peanuts, and cashews provide long-lasting energy (you're welcome ladies) while the bananas, apple rings, and raisins will provide a quick boost in energy levels! For even more energy, we've topped it off with coconut, dark chocolate chips, and pumpkin seeds. All ingredients are organic so you can enjoy the natural stamina without the crash.",
                 Price = (decimal)18.99,
