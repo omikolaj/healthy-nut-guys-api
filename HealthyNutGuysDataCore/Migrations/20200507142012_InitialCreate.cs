@@ -258,7 +258,6 @@ namespace HealthyNutGuysDataCore.Migrations
                     ImageSrc = table.Column<string>(nullable: true),
                     Type = table.Column<int>(nullable: false),
                     Price = table.Column<decimal>(type: "decimal(5,2)", nullable: true),
-                    DiscountApplied = table.Column<bool>(nullable: false),
                     IsInStock = table.Column<bool>(nullable: false),
                     Deleted = table.Column<bool>(nullable: false),
                     IsOnSale = table.Column<bool>(nullable: false)
@@ -284,8 +283,6 @@ namespace HealthyNutGuysDataCore.Migrations
                     Description = table.Column<string>(nullable: true),
                     Subtitle = table.Column<string>(nullable: true),
                     ImageSrc = table.Column<string>(nullable: true),
-                    Price = table.Column<decimal>(type: "decimal(5,2)", nullable: true),
-                    DiscountApplied = table.Column<bool>(nullable: false),
                     Deleted = table.Column<bool>(nullable: false),
                     IsOnSale = table.Column<bool>(nullable: false),
                     IsInStock = table.Column<bool>(nullable: false)
@@ -344,7 +341,9 @@ namespace HealthyNutGuysDataCore.Migrations
                 {
                     Id = table.Column<string>(nullable: false),
                     Option = table.Column<string>(nullable: true),
-                    CustomProductId = table.Column<string>(nullable: true)
+                    CustomProductId = table.Column<string>(nullable: true),
+                    Price = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    SalePrice = table.Column<decimal>(type: "decimal(5,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -386,7 +385,9 @@ namespace HealthyNutGuysDataCore.Migrations
                     Id = table.Column<string>(nullable: false),
                     ProductId = table.Column<string>(nullable: true),
                     LabelSrc = table.Column<string>(nullable: true),
-                    Deleted = table.Column<bool>(nullable: false)
+                    Deleted = table.Column<bool>(nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    SalePrice = table.Column<decimal>(type: "decimal(5,2)", nullable: false)
                 },
                 constraints: table =>
                 {

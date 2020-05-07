@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthyNutGuysDataCore.Migrations
 {
     [DbContext(typeof(HealthyNutGuysContext))]
-    [Migration("20200506200127_InitialCreate")]
+    [Migration("20200507142012_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -218,9 +218,6 @@ namespace HealthyNutGuysDataCore.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("DiscountApplied")
-                        .HasColumnType("bit");
-
                     b.Property<string>("ImageSrc")
                         .HasColumnType("nvarchar(max)");
 
@@ -260,6 +257,12 @@ namespace HealthyNutGuysDataCore.Migrations
 
                     b.Property<string>("Option")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<decimal>("SalePrice")
+                        .HasColumnType("decimal(5,2)");
 
                     b.HasKey("Id");
 
@@ -427,9 +430,6 @@ namespace HealthyNutGuysDataCore.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("DiscountApplied")
-                        .HasColumnType("bit");
-
                     b.Property<string>("ImageSrc")
                         .HasColumnType("nvarchar(max)");
 
@@ -441,9 +441,6 @@ namespace HealthyNutGuysDataCore.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal?>("Price")
-                        .HasColumnType("decimal(5,2)");
 
                     b.Property<string>("Subtitle")
                         .HasColumnType("nvarchar(max)");
@@ -466,8 +463,14 @@ namespace HealthyNutGuysDataCore.Migrations
                     b.Property<string>("LabelSrc")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(5,2)");
+
                     b.Property<string>("ProductId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<decimal>("SalePrice")
+                        .HasColumnType("decimal(5,2)");
 
                     b.HasKey("Id");
 

@@ -78,8 +78,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 Id = Guid.NewGuid().ToString(),
                 Name = "Succulent Nut Sack",
                 Subtitle = "Healthy Nut Guys",
-                Description = "This savory, Succulent Nut Sack will leave you drooling! A decadent mix of white and milk chocolate chips, raisins, dried cranberries, peanuts, almonds, and cashews. As if that wasn't enough to make you nut...I mean, go nuts...we've topped it off with our delicious honey cashew vanilla granola. This organic Succulent Nut Sack is the thing of your wildest trail mix dreams!",
-                Price = (decimal)17.99,
+                Description = "This savory, Succulent Nut Sack will leave you drooling! A decadent mix of white and milk chocolate chips, raisins, dried cranberries, peanuts, almonds, and cashews. As if that wasn't enough to make you nut...I mean, go nuts...we've topped it off with our delicious honey cashew vanilla granola. This organic Succulent Nut Sack is the thing of your wildest trail mix dreams!",                
                 ImageSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533594/thng/succulent_nut_sack_aa2ujs.png",
                 CategoryId = nutCategory.Id,
                 IsOnSale = true,
@@ -105,6 +104,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             ProductDetails succulentDetails4oz = new ProductDetails()
             {
                 Id = Guid.NewGuid().ToString(),
+                Price = (decimal)17.99,
                 ProductId = succulentSack.Id,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/succulent_nut_sack_label_s2glru.png",
             };
@@ -122,6 +122,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             ProductDetails succulentDetails8oz = new ProductDetails()
             {
                 Id = Guid.NewGuid().ToString(),
+                Price = (decimal)18.99,
                 ProductId = succulentSack.Id,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/succulent_nut_sack_label_s2glru.png",
             };
@@ -139,6 +140,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             ProductDetails succulentDetails12oz = new ProductDetails()
             {
                 Id = Guid.NewGuid().ToString(),
+                Price = (decimal)19.99,
                 ProductId = succulentSack.Id,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/succulent_nut_sack_label_s2glru.png",
             };
@@ -150,13 +152,14 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             {
                 Id = Guid.NewGuid().ToString(),
                 ProductDetailsId = succulentDetails12oz.Id,
-                Option = "12oz"
+                Option = "12oz",
             };
 
             ProductDetails succulentDetails16oz = new ProductDetails()
             {
                 Id = Guid.NewGuid().ToString(),
                 ProductId = succulentSack.Id,
+                Price = (decimal)20.99,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/succulent_nut_sack_label_s2glru.png",
             };
 
@@ -227,8 +230,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 Id = Guid.NewGuid().ToString(),
                 Name = "Keto Nut Sack",
                 Subtitle = "Healthy Nut Guys",
-                Description = "This blend of nuts and seeds is perfect for your ketogenic lifestyle! The nut blend of peanuts, Brazil nuts, almonds, and pecans mixed with sesame and sunflower seeds will help keep you in ketosis while providing essential fats, vitamins, and antioxidants. This organic, high-fiber Nut Sack will keep you full, ripped, and craving more of our nuts!",
-                Price = (decimal)22.99,
+                Description = "This blend of nuts and seeds is perfect for your ketogenic lifestyle! The nut blend of peanuts, Brazil nuts, almonds, and pecans mixed with sesame and sunflower seeds will help keep you in ketosis while providing essential fats, vitamins, and antioxidants. This organic, high-fiber Nut Sack will keep you full, ripped, and craving more of our nuts!",                
                 ImageSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533594/thng/keto_nut_sack_kfgj2w.png",
                 CategoryId = nutCategory.Id,
                 IsOnSale = true,
@@ -255,6 +257,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             {
                 Id = Guid.NewGuid().ToString(),
                 ProductId = ketoSack.Id,
+                Price = (decimal)22.99,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533594/thng/keto_nut_sack_label_tdvpid.png",
             };
 
@@ -272,6 +275,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             {
                 Id = Guid.NewGuid().ToString(),
                 ProductId = ketoSack.Id,
+                Price = (decimal)23.99,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533594/thng/keto_nut_sack_label_tdvpid.png",
             };
 
@@ -289,6 +293,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             {
                 Id = Guid.NewGuid().ToString(),
                 ProductId = ketoSack.Id,
+                Price = (decimal)23.99,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533594/thng/keto_nut_sack_label_tdvpid.png",
             };
 
@@ -306,6 +311,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             {
                 Id = Guid.NewGuid().ToString(),
                 ProductId = ketoSack.Id,
+                Price = (decimal)22.99,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533594/thng/keto_nut_sack_label_tdvpid.png",
             };
 
@@ -370,8 +376,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 Id = Guid.NewGuid().ToString(),
                 Name = "Energy Nut Sack",                
                 Subtitle = "Healthy Nut Guys",
-                Description = "Energize your Nut Sack with this awesome mix! Almonds, peanuts, and cashews provide long-lasting energy (you're welcome ladies) while the bananas, apple rings, and raisins will provide a quick boost in energy levels! For even more energy, we've topped it off with coconut, dark chocolate chips, and pumpkin seeds. All ingredients are organic so you can enjoy the natural stamina without the crash.",
-                Price = (decimal)18.99,
+                Description = "Energize your Nut Sack with this awesome mix! Almonds, peanuts, and cashews provide long-lasting energy (you're welcome ladies) while the bananas, apple rings, and raisins will provide a quick boost in energy levels! For even more energy, we've topped it off with coconut, dark chocolate chips, and pumpkin seeds. All ingredients are organic so you can enjoy the natural stamina without the crash.",                
                 ImageSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/energy_nut_sack_jwssmx.png",                
                 CategoryId = nutCategory.Id,
                 IsOnSale = true,
@@ -396,6 +401,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             {
                 Id = Guid.NewGuid().ToString(),
                 ProductId = energySack.Id,
+                Price = (decimal)19.99,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/energy_nut_sack_label_y64lpg.png",
             };
 
@@ -413,6 +419,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             {
                 Id = Guid.NewGuid().ToString(),
                 ProductId = energySack.Id,
+                Price = (decimal)20.99,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/energy_nut_sack_label_y64lpg.png",
             };
 
@@ -430,6 +437,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             {
                 Id = Guid.NewGuid().ToString(),
                 ProductId = energySack.Id,
+                Price = (decimal)21.99,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/energy_nut_sack_label_y64lpg.png",
             };
 
@@ -447,6 +455,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             {
                 Id = Guid.NewGuid().ToString(),
                 ProductId = energySack.Id,
+                Price = (decimal)21.99,
                 LabelSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/energy_nut_sack_label_y64lpg.png",
             };
 
@@ -512,8 +521,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 Name = "Custom Nut Sack",
                 Subtitle = "Healthy Nut Guys",
                 Type = CustomProductType.CustomSack,
-                Description = "You tell us how you want our Nut Sack! With the Custom Nut Sack, you get to choose from all of our ingredients to create the Nut Sack you've always wanted! As always, we will fill this Nut Sack with only organic ingredients to provide you with the highest quality, best tasting Nut Sack you have ever had!",
-                Price = (decimal)17.99,
+                Description = "You tell us how you want our Nut Sack! With the Custom Nut Sack, you get to choose from all of our ingredients to create the Nut Sack you've always wanted! As always, we will fill this Nut Sack with only organic ingredients to provide you with the highest quality, best tasting Nut Sack you have ever had!",                
                 ImageSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/custom_nut_sack_zfuek1.png",
                 CategoryId = nutCategory.Id,
                 IsOnSale = true,
@@ -538,28 +546,32 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             {
                 Id = Guid.NewGuid().ToString(),
                 CustomProductId = customSack.Id,
-                Option = "4oz"
+                Option = "4oz",
+                Price = (decimal)17.99,
             };
 
             CustomSelectOption customSack8oz = new CustomSelectOption
             {
                 Id = Guid.NewGuid().ToString(),
                 CustomProductId = customSack.Id,
-                Option = "8oz"
+                Option = "8oz",
+                Price = (decimal)18.99,
             };
 
             CustomSelectOption customSack12oz = new CustomSelectOption
             {
                 Id = Guid.NewGuid().ToString(),
                 CustomProductId = customSack.Id,
-                Option = "12oz"
+                Option = "12oz",
+                Price = (decimal)19.99,
             };
 
             CustomSelectOption customSack16oz = new CustomSelectOption
             {
                 Id = Guid.NewGuid().ToString(),
                 CustomProductId = customSack.Id,
-                Option = "16oz"
+                Option = "16oz",
+                Price = (decimal)20.99,
             };
 
             List<CustomSelectOption> customSackOptions = new List<CustomSelectOption>
@@ -694,7 +706,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 Id = Guid.NewGuid().ToString(),
                 MixCategoryId = fruits.Id,
                 Name = "Bananas",
-                InStock = true
+                InStock = false
             };
 
             Ingredient cranberries = new Ingredient
@@ -710,7 +722,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 Id = Guid.NewGuid().ToString(),
                 MixCategoryId = fruits.Id,
                 Name = "Coconut",
-                InStock = true
+                InStock = false
             };
 
             Ingredient dates = new Ingredient
@@ -852,7 +864,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             MixCategory granola = new MixCategory
             {
                 Id = Guid.NewGuid().ToString(),
-                InStock = true,
+                InStock = false,
                 CustomProductId = customSack.Id,
                 Name = "Granola",
                 Type = MixCategoryType.Granola
