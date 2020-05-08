@@ -364,6 +364,7 @@ namespace HealthyNutGuysDataCore.Migrations
                     InStock = table.Column<bool>(nullable: false),
                     CustomProductId = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
+                    Order = table.Column<int>(nullable: false),
                     Deleted = table.Column<bool>(nullable: false),
                     Type = table.Column<int>(nullable: false)
                 },

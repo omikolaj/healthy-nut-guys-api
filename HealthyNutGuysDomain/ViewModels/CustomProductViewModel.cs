@@ -27,6 +27,10 @@ namespace HealthyNutGuysDomain.ViewModels
         [DataMember(EmitDefaultValue = false)]
         public bool IsOnSale { get; set; }
         [DataMember(EmitDefaultValue = false)]
+        public decimal SalePrice { get; set; }
+        [DataMember(EmitDefaultValue = false)]
+        public bool IsInStock { get; set; }
+        [DataMember(EmitDefaultValue = false)]
         // if the item is on sale 
         public ICollection<SaleItemViewModel> Sales { get; set; }
         [DataMember(EmitDefaultValue = false)]

@@ -17,6 +17,8 @@ namespace HealthyNutGuysDomain.ViewModels
         [DataMember(EmitDefaultValue = false)]
         public string Name { get; set; }
         [DataMember(EmitDefaultValue = false)]
+        public int Order { get; set; }
+        [DataMember(EmitDefaultValue = false)]
         public MixCategoryType Type { get; set; }
         [DataMember(EmitDefaultValue = false)]
         public ICollection<IngredientViewModel> Ingredients { get; set; }

@@ -15,6 +15,10 @@ namespace HealthyNutGuysDomain.ViewModels
         [DataMember(EmitDefaultValue = false)]
         public string LabelSrc { get; set; }
         [DataMember(EmitDefaultValue = false)]
-        public SelectOptionViewModel SelectOption { get; set; }        
+        public SelectOptionViewModel SelectOption { get; set; }
+        [DataMember(EmitDefaultValue = false)]
+        public decimal Price { get; set; }
+        [DataMember(EmitDefaultValue = false)]
+        public decimal SalePrice { get; set; }
     }
 }

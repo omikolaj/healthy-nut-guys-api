@@ -17,7 +17,7 @@ namespace HealthyNutGuysDomain.Models
         [Required]
         public DateTime ExpireDate { get; set; }
         [Column(TypeName = "decimal(5,2)")]
-        public decimal DiscountValue { get; set; }
+        public decimal DiscountValue { get; set; }        
         [Required]
         public OfferType Type { get; set; }
     }

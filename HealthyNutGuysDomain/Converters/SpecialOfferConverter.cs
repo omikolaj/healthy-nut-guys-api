@@ -18,6 +18,8 @@ namespace HealthyNutGuysDomain.Converters
             model.Type = (OfferType)specialOffer.Type;            
             model.ExpireDate = (DateTime)specialOffer?.ExpireDate;
             model.DisplayMessage = specialOffer.DisplayMessage;
+            if (specialOffer.SalePrice != null)
+                model.SalePrice = specialOffer.SalePrice;
             
             return model;
         }

@@ -23,6 +23,8 @@ namespace HealthyNutGuysDomain.Converters
             if (saleItem.SpecialOfferId != null)
                 model.SpecialOffer = SpecialOfferConverter.Convert(saleItem.SpecialOffer);
             model.Type = saleItem.Type;
+            if (saleItem.SalePrice != null)
+                model.SalePrice = (decimal)saleItem.SalePrice;
             model.DiscountValue = saleItem.DiscountValue;
 
             return model;

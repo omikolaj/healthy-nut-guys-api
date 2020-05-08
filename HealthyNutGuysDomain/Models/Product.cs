@@ -12,11 +12,10 @@ namespace HealthyNutGuysDomain.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string Subtitle { get; set; }
-        public string ImageSrc { get; set; }        
-        [Column(TypeName = "decimal(5,2)")]
-        public decimal? Price { get; set; }
+        public string ImageSrc { get; set; }                      
         public bool Deleted { get; set; } = false;
         public bool IsOnSale { get; set; } = false;
+        public bool IsInStock { get; set; } = true;
         // if the item is on sale   
         public ICollection<SaleItem> Sales { get; set; }
         public Category Category { get; set; }

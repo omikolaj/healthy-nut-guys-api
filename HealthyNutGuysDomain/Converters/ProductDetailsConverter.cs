@@ -15,6 +15,7 @@ namespace HealthyNutGuysDomain.Converters
             model.Id = productDetails.Id;
             model.ProductId = productDetails.ProductId;
             model.LabelSrc = productDetails.LabelSrc;
+            model.Price = productDetails.Price;
             model.SelectOption = SelectOptionConverter.Convert(productDetails.SelectOption);
 
             return model;

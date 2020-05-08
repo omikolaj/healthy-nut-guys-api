@@ -13,6 +13,10 @@ namespace HealthyNutGuysDomain.ViewModels
         [DataMember(EmitDefaultValue = false)]
         public string CustomProductId { get; set; }
         [DataMember(EmitDefaultValue = false)]
-        public string Option { get; set; }                
+        public string Option { get; set; }
+        [DataMember(EmitDefaultValue = false)]
+        public decimal Price { get; set; }
+        [DataMember(EmitDefaultValue = false)]
+        public decimal SalePrice { get; set; }
     }
 }

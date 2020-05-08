@@ -16,6 +16,7 @@ namespace HealthyNutGuysDomain.Converters
             model.InStock = mix.InStock;
             model.Name = mix.Name;
             model.CustomProductId = mix.CustomProductId;
+            model.Order = mix.Order;
             model.Type = mix.Type;
             if (mix.Ingredients != null)
                 model.Ingredients = IngredientConverter.ConvertList(mix.Ingredients);            

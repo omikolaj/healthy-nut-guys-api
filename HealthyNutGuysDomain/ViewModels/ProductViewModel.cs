@@ -20,11 +20,11 @@ namespace HealthyNutGuysDomain.ViewModels
         [DataMember(EmitDefaultValue = false)]
         public string Subtitle { get; set; }
         [DataMember(EmitDefaultValue = false)]
-        public string ImageSrc { get; set; }
-        [DataMember(EmitDefaultValue = false)]
-        public decimal? Price { get; set; }        
+        public string ImageSrc { get; set; }        
         [DataMember(EmitDefaultValue = false)]
         public bool IsOnSale { get; set; }
+        [DataMember(EmitDefaultValue = false)]
+        public bool IsInStock { get; set; }
         [DataMember(EmitDefaultValue = false)]        
         public ICollection<SaleItemViewModel> Sales { get; set; }
         [DataMember(EmitDefaultValue = false)]

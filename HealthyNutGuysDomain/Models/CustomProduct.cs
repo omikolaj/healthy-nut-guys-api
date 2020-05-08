@@ -19,8 +19,9 @@ namespace HealthyNutGuysDomain.Models
         public CustomProductType Type { get; set; }
         [Column(TypeName = "decimal(5,2)")]
         public decimal? Price { get; set; }
+        public bool IsInStock { get; set; } = true;
         public bool Deleted { get; set; } = false;
-        public bool IsOnSale { get; set; } = false;
+        public bool IsOnSale { get; set; } = false;        
         // if the item is on sale 
         public ICollection<SaleItem> Sales { get; set; }
         public Category Category { get; set; }

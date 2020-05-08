@@ -21,6 +21,8 @@ namespace HealthyNutGuysDomain.ViewModels
         [DataMember(EmitDefaultValue = false)]
         public DateTime ExpireDate { get; set; }        
         [DataMember(EmitDefaultValue = false)]
+        public decimal SalePrice { get; set; }
+        [DataMember(EmitDefaultValue = false)]
         public OfferType Type { get; set; }
         [DataMember(EmitDefaultValue = false)]
         public decimal? DiscountValue { get; set; }        

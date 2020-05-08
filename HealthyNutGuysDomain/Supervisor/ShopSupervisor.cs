@@ -16,7 +16,7 @@ namespace HealthyNutGuysDomain.Supervisor
         {
             // retrieve all special offers
             List<SpecialOffer> specialOffers = await this._specialOfferRepository.GetAllAsync(ct);
-            List<SpecialOffer> shopOffers = specialOffers.Where(o => o.Scope == OfferScope.Shop && o.ExpireDate < DateTime.Now).ToList();
+            List<SpecialOffer> shopOffers = specialOffers.Where(o => o.Scope == OfferScope.Shop && o.ExpireDate > DateTime.Now).ToList();
 
             SpecialOfferViewModel shopOffer = null;
             // if the count is greater than 1 then we have a problem, we only ever want to display one shop offer
@@ -53,7 +53,6 @@ namespace HealthyNutGuysDomain.Supervisor
             foreach (Product product in products)
             {
                 ProductViewModel productView = ProductConverter.Convert(product);
-
                 if (product.IsOnSale == true)
                 {
                     List<SaleItem> sales = await this._saleItemRepository.GetByProductId(product.Id);
@@ -66,8 +65,8 @@ namespace HealthyNutGuysDomain.Supervisor
                             SaleItemViewModel saleView = SaleItemConverter.Convert(sale);
                             saleViews.Add(saleView);
                         }
-                    }
-                    productView.Sales = saleViews;
+                    }                   
+                    productView.Sales = saleViews;                    
                 }
 
                 productsView.Add(productView);
@@ -136,5 +135,35 @@ namespace HealthyNutGuysDomain.Supervisor
 
             return customSackView;
         }
+
+        //private decimal? CalculateSaleForProduct(Product product)
+        //{
+        //    List<SaleItem> saleItems = product.Sales.Where(s => s.Type == OfferType.AmountOff || s.Type == OfferType.PercentOff).ToList();
+
+        //    // check which sale is newest and take that one
+        //    SaleItem applySale = saleItems?.OrderByDescending(saleItem => saleItem.Modified).First();
+
+        //    decimal? salePrice = null;
+
+        //    if(applySale != null)
+        //    {
+        //        if(product.Price != null)
+        //        {
+        //            if(applySale.DiscountValue != null)
+        //            {                   
+        //                if (applySale.Type == OfferType.PercentOff)
+        //                {
+        //                    decimal discountPercentage = (decimal)applySale.DiscountValue / 100;
+        //                    salePrice = product.Price * discountPercentage;
+        //                }
+        //                else
+        //                {
+        //                    salePrice = product.Price - applySale.DiscountValue;
+        //                }
+        //            }                    
+        //        }                
+        //    }
+        //    return salePrice;
+        //}
     }
 }

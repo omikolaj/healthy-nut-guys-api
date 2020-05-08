@@ -20,6 +20,7 @@ namespace HealthyNutGuysDomain.Converters
             model.ImageSrc = product.ImageSrc;
             model.Price = product?.Price;
             model.IsOnSale = product.IsOnSale;
+            model.IsInStock = product.IsInStock;       
             model.Type = product.Type;
             model.Category = CategoryConverter.Convert(product.Category);
             if(product.MixCategories != null)

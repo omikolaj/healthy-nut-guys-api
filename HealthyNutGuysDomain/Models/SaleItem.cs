@@ -15,6 +15,9 @@ namespace HealthyNutGuysDomain.Models
         public string? PromoCodeId { get; set; }        
         public string? SpecialOfferId { get; set; }
         public bool Deleted { get; set; } = false;
+        [Column(TypeName = "decimal(5,2)")]
+        public decimal? SalePrice { get; set; }
+        public DateTime Modified { get; set; } = DateTime.Now;
         [Required]
         public DateTime ExpireDate { get; set; }
         // % vs $

@@ -20,11 +20,14 @@ namespace HealthyNutGuysDomain.Models
         public OfferScope Scope { get; set; }
         [Required]
         public DateTime ExpireDate { get; set; }
+        public DateTime Modified { get; set; } = DateTime.Now;
         // free shipping vs free stickers vs % off vs $ off
         [Required]
         public OfferType Type { get; set; }
         [Column(TypeName = "decimal(5,2)")]
         public decimal? DiscountValue { get; set; }
+        [Column(TypeName = "decimal(5,2)")]
+        public decimal? SalePrice { get; set; }
         public PromoCode PromoCode { get; set; }
         public UserSubscription UserSubscription { get; set; }
     }

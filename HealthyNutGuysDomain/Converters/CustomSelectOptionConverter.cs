@@ -11,8 +11,9 @@ namespace HealthyNutGuysDomain.Converters
     {
         public static CustomSelectOptionViewModel Convert(CustomSelectOption option)
         {
-            CustomSelectOptionViewModel model = new CustomSelectOptionViewModel();
+            CustomSelectOptionViewModel model = new CustomSelectOptionViewModel();            
             model.Option = option.Option;
+            model.Price = option.Price;
 
             return model;
         }

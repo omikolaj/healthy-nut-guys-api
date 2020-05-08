@@ -14,6 +14,8 @@ namespace HealthyNutGuysDomain.Models
         public string CustomProductId { get; set; }
         [Required]
         public string Name { get; set; }
+        [Required]
+        public int Order { get; set; }
         public bool Deleted { get; set; } = false;
         [Required]
         public MixCategoryType Type { get; set; }        

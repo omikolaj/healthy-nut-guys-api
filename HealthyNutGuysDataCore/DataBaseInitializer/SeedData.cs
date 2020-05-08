@@ -592,6 +592,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             {
                 Id = Guid.NewGuid().ToString(),
                 InStock = true,
+                Order = 1,
                 CustomProductId = customSack.Id,
                 Name = "Nuts",
                 Type = MixCategoryType.Nuts
@@ -677,6 +678,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             {
                 Id = Guid.NewGuid().ToString(),
                 InStock = true,
+                Order = 2,
                 CustomProductId = customSack.Id,
                 Name = "Fruits",
                 Type = MixCategoryType.Fruits
@@ -798,6 +800,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             {
                 Id = Guid.NewGuid().ToString(),
                 InStock = true,
+                Order = 3,
                 CustomProductId = customSack.Id,
                 Name = "Seeds",
                 Type = MixCategoryType.Seeds
@@ -865,6 +868,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
             {
                 Id = Guid.NewGuid().ToString(),
                 InStock = false,
+                Order = 4,
                 CustomProductId = customSack.Id,
                 Name = "Granola",
                 Type = MixCategoryType.Granola
