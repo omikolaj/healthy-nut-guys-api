@@ -24,11 +24,11 @@ namespace HealthyNutGuysDomain.ViewModels
         public CustomProductType Type { get; set; }
         [DataMember(EmitDefaultValue = false)]
         public decimal? Price { get; set; }
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember(EmitDefaultValue = true)]
         public bool IsOnSale { get; set; }
         [DataMember(EmitDefaultValue = false)]
         public decimal SalePrice { get; set; }
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember(EmitDefaultValue = true)]
         public bool IsInStock { get; set; }
         [DataMember(EmitDefaultValue = false)]
         // if the item is on sale 

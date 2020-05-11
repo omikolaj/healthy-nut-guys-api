@@ -21,9 +21,9 @@ namespace HealthyNutGuysDomain.ViewModels
         public string Subtitle { get; set; }
         [DataMember(EmitDefaultValue = false)]
         public string ImageSrc { get; set; }        
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember(EmitDefaultValue = true)]
         public bool IsOnSale { get; set; }
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember(EmitDefaultValue = true)]
         public bool IsInStock { get; set; }
         [DataMember(EmitDefaultValue = false)]        
         public ICollection<SaleItemViewModel> Sales { get; set; }

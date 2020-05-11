@@ -1,12 +1,6 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using HealthyNutGuysDataCore.Configurations.Merchandise;
-using HealthyNutGuysDataCore.Configurations.Schedule;
 using HealthyNutGuysDomain.Models;
-using HealthyNutGuysDomain.Models.Gallery;
-using HealthyNutGuysDomain.Models.Merchandise;
-using HealthyNutGuysDomain.Models.Schedule;
-using HealthyNutGuysDomain.Models.TeamSignUp;
 using HealthyNutGuysDataCore.Configurations;
 
 namespace HealthyNutGuysDataCore

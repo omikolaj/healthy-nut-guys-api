@@ -4,8 +4,6 @@ using System.Threading.Tasks;
 using HealthyNutGuysDomain.Converters;
 using HealthyNutGuysDomain.Models;
 using HealthyNutGuysDomain.ViewModels;
-using HealthyNutGuysDomain.ViewModels.Gallery;
-using HealthyNutGuysDomain.ViewModels.Merchandise;
 
 namespace HealthyNutGuysDomain.Supervisor
 {

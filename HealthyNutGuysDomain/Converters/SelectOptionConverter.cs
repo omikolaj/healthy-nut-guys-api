@@ -13,6 +13,7 @@ namespace HealthyNutGuysDomain.Converters
         {
             SelectOptionViewModel model = new SelectOptionViewModel();            
             model.Option = option.Option;
+            model.Id = option.Id;
 
             return model;
         }

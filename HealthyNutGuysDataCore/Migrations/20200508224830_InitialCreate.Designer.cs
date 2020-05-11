@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthyNutGuysDataCore.Migrations
 {
     [DbContext(typeof(HealthyNutGuysContext))]
-    [Migration("20200508204652_InitialCreate")]
+    [Migration("20200508224830_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

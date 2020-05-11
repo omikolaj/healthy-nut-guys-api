@@ -68,57 +68,57 @@ namespace HealthyNutGuysAPI.Controllers
 
     #region Controllers
 
-    [HttpPost("login")]
-    public async Task<ActionResult> Login([FromBody] LoginViewModel login, CancellationToken ct = default(CancellationToken))
-    {
-      ApplicationUser user = _userManager.Users.SingleOrDefault(u => u.UserName == login.UserName);
+    //[HttpPost("login")]
+    //public async Task<ActionResult> Login([FromBody] LoginViewModel login, CancellationToken ct = default(CancellationToken))
+    //{
+    //  ApplicationUser user = _userManager.Users.SingleOrDefault(u => u.UserName == login.UserName);
 
-      ClaimsIdentity identity = await _getIdentity.GetClaimsIdentity(user, login.Password);
+    //  ClaimsIdentity identity = await _getIdentity.GetClaimsIdentity(user, login.Password);
 
-      if (identity == null)
-      {
-        return Unauthorized(Errors.AddErrorToModelState(ErrorCodes.Login, ErrorDescriptions.LoginFailure, ModelState));
-      }
+    //  if (identity == null)
+    //  {
+    //    return Unauthorized(Errors.AddErrorToModelState(ErrorCodes.Login, ErrorDescriptions.LoginFailure, ModelState));
+    //  }
 
-      // Remove existing refresh tokens
-      await _userManager.RemoveAuthenticationTokenAsync(user, TokenOptionsStrings.RefreshTokenProvider, TokenOptionsStrings.RefreshToken);
+    //  // Remove existing refresh tokens
+    //  await _userManager.RemoveAuthenticationTokenAsync(user, TokenOptionsStrings.RefreshTokenProvider, TokenOptionsStrings.RefreshToken);
 
-      // Generate a new Token
-      string newRefreshToken = await _userManager.GenerateUserTokenAsync(user, TokenOptionsStrings.RefreshTokenProvider, TokenOptionsStrings.RefreshToken);
+    //  // Generate a new Token
+    //  string newRefreshToken = await _userManager.GenerateUserTokenAsync(user, TokenOptionsStrings.RefreshTokenProvider, TokenOptionsStrings.RefreshToken);
 
-      // Issue new refresh token to the user
-      await _userManager.SetAuthenticationTokenAsync(user, TokenOptionsStrings.RefreshTokenProvider, TokenOptionsStrings.RefreshToken, newRefreshToken);
+    //  // Issue new refresh token to the user
+    //  await _userManager.SetAuthenticationTokenAsync(user, TokenOptionsStrings.RefreshTokenProvider, TokenOptionsStrings.RefreshToken, newRefreshToken);
 
-      ApplicationToken token = await Token.GenerateJwt(user.UserName, identity, this._jwtFactory, this._jwtOptions, this._jsonSerializerSettings);
+    //  ApplicationToken token = await Token.GenerateJwt(user.UserName, identity, this._jwtFactory, this._jwtOptions, this._jsonSerializerSettings);
 
-      Utilities.CookieUtility.GenerateHttpOnlyCookie(Response, TokenOptionsStrings.ApplicationToken, token);
+    //  Utilities.CookieUtility.GenerateHttpOnlyCookie(Response, TokenOptionsStrings.ApplicationToken, token);
 
-      return new OkObjectResult(token);
-    }
+    //  return new OkObjectResult(token);
+    //}
 
-    [HttpPost("admin/{:id}/update-password")]
-    public async Task<ActionResult<bool>> UpdatePassword([FromBody] LoginViewModel login, CancellationToken ct = default(CancellationToken))
-    {
-      ApplicationUser user = _userManager.Users.SingleOrDefault(u => u.UserName == login.UserName);            
+    //[HttpPost("admin/{:id}/update-password")]
+    //public async Task<ActionResult<bool>> UpdatePassword([FromBody] LoginViewModel login, CancellationToken ct = default(CancellationToken))
+    //{
+    //  ApplicationUser user = _userManager.Users.SingleOrDefault(u => u.UserName == login.UserName);            
 
-      ClaimsIdentity identity = await _getIdentity.GetClaimsIdentity(user, login.Password);
+    //  ClaimsIdentity identity = await _getIdentity.GetClaimsIdentity(user, login.Password);
 
-      if (identity == null)
-      {
-        return Unauthorized(Errors.AddErrorToModelState(ErrorCodes.Login, ErrorDescriptions.LoginFailure, ModelState));
-      }
+    //  if (identity == null)
+    //  {
+    //    return Unauthorized(Errors.AddErrorToModelState(ErrorCodes.Login, ErrorDescriptions.LoginFailure, ModelState));
+    //  }
 
-      string token = await this._userManager.GeneratePasswordResetTokenAsync(user);
+    //  string token = await this._userManager.GeneratePasswordResetTokenAsync(user);
 
-      IdentityResult result = await this._userManager.ResetPasswordAsync(user, token, login.NewPassword);
+    //  IdentityResult result = await this._userManager.ResetPasswordAsync(user, token, login.NewPassword);
 
-      if (!result.Succeeded)
-      {
-        return BadRequest(Errors.AddErrorToModelState(ErrorCodes.PasswordUpdate, ErrorDescriptions.PasswordUpdateFailure, ModelState));
-      }
+    //  if (!result.Succeeded)
+    //  {
+    //    return BadRequest(Errors.AddErrorToModelState(ErrorCodes.PasswordUpdate, ErrorDescriptions.PasswordUpdateFailure, ModelState));
+    //  }
 
-      return new OkObjectResult(true);
-    }
+    //  return new OkObjectResult(true);
+    //}
 
     [HttpDelete("logout")]
     public async Task<ActionResult<bool>> Logout(long userId, CancellationToken ct = default(CancellationToken))

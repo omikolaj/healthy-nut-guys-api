@@ -2,19 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Web;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Azure.KeyVault;
-using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Extensions.Configuration;
 using HealthyNutGuysAPI.Auth.Jwt;
-using HealthyNutGuysDomain.Models;
-using HealthyNutGuysDomain.ViewModels;
-using HealthyNutGuysDomain.ViewModels.Merchandise;
 
 public class CloudinaryService
 {
@@ -67,64 +60,64 @@ public class CloudinaryService
 
     }
 
-    public async Task<DelResResult> DeleteResources(GearItemViewModel gearItem)
-    {
-        DelResResult result = null;
-        foreach (GearImageViewModel gearImage in gearItem.Images)
-        {
-            result = await this.DeleteResource(gearImage.CloudinaryPublicId);
-            if (result.StatusCode != HttpStatusCode.OK)
-            {
-                return result;
-            }
-        }
-        return result;
-    }
+    //public async Task<DelResResult> DeleteResources(GearItemViewModel gearItem)
+    //{
+    //    DelResResult result = null;
+    //    foreach (GearImageViewModel gearImage in gearItem.Images)
+    //    {
+    //        result = await this.DeleteResource(gearImage.CloudinaryPublicId);
+    //        if (result.StatusCode != HttpStatusCode.OK)
+    //        {
+    //            return result;
+    //        }
+    //    }
+    //    return result;
+    //}
 
-    public async Task<T> UploadNewImage<T>(IFormFile file, string gearImageName)
-    where T : ImageBaseViewModel, new()
-    {
-        // Try to upload to Cloudinary
-        ImageUploadResult result = await this.UploadImage(file);
+    //public async Task<T> UploadNewImage<T>(IFormFile file, string gearImageName)
+    //where T : ImageBaseViewModel, new()
+    //{
+    //    // Try to upload to Cloudinary
+    //    ImageUploadResult result = await this.UploadImage(file);
 
-        T newImage = (T)Activator.CreateInstance(typeof(T));
+    //    T newImage = (T)Activator.CreateInstance(typeof(T));
 
-        // If successfull create GearImageViewModel
-        if (result.StatusCode == HttpStatusCode.OK)
-        {
-            newImage.CloudinaryPublicId = result.PublicId;
-            newImage.Width = result.Width;
-            newImage.Height = result.Height;
-            newImage.ResourceType = result.ResourceType;
-            newImage.Format = result.Format;
-            newImage.Name = gearImageName;
+    //    // If successfull create GearImageViewModel
+    //    if (result.StatusCode == HttpStatusCode.OK)
+    //    {
+    //        newImage.CloudinaryPublicId = result.PublicId;
+    //        newImage.Width = result.Width;
+    //        newImage.Height = result.Height;
+    //        newImage.ResourceType = result.ResourceType;
+    //        newImage.Format = result.Format;
+    //        newImage.Name = gearImageName;
 
-            this.ConfigureUrls(newImage, result);
-        }
+    //        this.ConfigureUrls(newImage, result);
+    //    }
 
-        return newImage;
-    }
+    //    return newImage;
+    //}
 
-    public async Task<IList<T>> UploadNewImages<T>(IEnumerable<IFormFile> newImages) where T : ImageBaseViewModel, new()
-    {
-        IList<T> newGearItemImages = new List<T>();
-        for (int i = 0; i < newImages.Count(); i++)
-        {
-            T newGearImage = await this.UploadNewImage<T>(newImages.ElementAt(i), newImages.ElementAt(i).FileName);
-            newGearItemImages.Add(newGearImage);
-        }
+    //public async Task<IList<T>> UploadNewImages<T>(IEnumerable<IFormFile> newImages) where T : ImageBaseViewModel, new()
+    //{
+    //    IList<T> newGearItemImages = new List<T>();
+    //    for (int i = 0; i < newImages.Count(); i++)
+    //    {
+    //        T newGearImage = await this.UploadNewImage<T>(newImages.ElementAt(i), newImages.ElementAt(i).FileName);
+    //        newGearItemImages.Add(newGearImage);
+    //    }
 
-        return newGearItemImages;
-    }
+    //    return newGearItemImages;
+    //}
 
-    private T ConfigureUrls<T>(T newImage, ImageUploadResult result)
-        where T : ImageBaseViewModel, new()
-    {
-        newImage.Url = $"{this._baseUrl}/f_auto,q_70/v{result.Version}/{result.PublicId}.jpg";
-        newImage.Small = $"{this._baseUrl}/f_auto,q_70,w_320/v{result.Version}/{result.PublicId}.jpg";
-        newImage.Medium = $"{this._baseUrl}/f_auto,q_70/v{result.Version}/{result.PublicId}.jpg";
-        newImage.Big = $"{this._baseUrl}/f_auto,q_70,w_1220/v{result.Version}/{result.PublicId}.jpg";
-        return newImage;
-    }
+    //private T ConfigureUrls<T>(T newImage, ImageUploadResult result)
+    //    where T : ImageBaseViewModel, new()
+    //{
+    //    newImage.Url = $"{this._baseUrl}/f_auto,q_70/v{result.Version}/{result.PublicId}.jpg";
+    //    newImage.Small = $"{this._baseUrl}/f_auto,q_70,w_320/v{result.Version}/{result.PublicId}.jpg";
+    //    newImage.Medium = $"{this._baseUrl}/f_auto,q_70/v{result.Version}/{result.PublicId}.jpg";
+    //    newImage.Big = $"{this._baseUrl}/f_auto,q_70,w_1220/v{result.Version}/{result.PublicId}.jpg";
+    //    return newImage;
+    //}
 
 }

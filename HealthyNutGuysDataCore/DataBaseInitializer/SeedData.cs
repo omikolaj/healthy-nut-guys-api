@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HealthyNutGuysDomain.Models.Schedule;
 using HealthyNutGuysDomain.Models;
 using Microsoft.AspNetCore.Identity;
 using HealthyNutGuysDomain.ViewModels;
@@ -72,6 +71,14 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 dbContext.Tags.Add(tag);
                 dbContext.SaveChanges();
             }
+            
+            ///////////////////////////////////////////SALES///////////////////////////////////////////////
+            // SALES HAVE TO BE RE-DONE. THEY MUST BE TIED TO PRODUCTDETAILS OR CUSTOMSELECTOPTION
+            // EACH PRODUCTDETAILS HAS TO HAVE CORRESPONDING SALEITEM, EACH CUSTOMSELECTOPTION
+            // MUST HAVE A CORRESPONDING SALEITEM IF ITEM IS ON SALE
+            // IsOnSale property should be on both Product and individual PRODUCTDETAILS OR CUSTOMSELECTOPTION
+
+            // CURRENT IMPLEMENTATION TIES A SINGLE SALE-ITEM TO EITHER PRODUCT OR CUSTOM PRODUCT
 
             Product succulentSack = new Product()
             {
@@ -81,7 +88,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 Description = "This savory, Succulent Nut Sack will leave you drooling! A decadent mix of white and milk chocolate chips, raisins, dried cranberries, peanuts, almonds, and cashews. As if that wasn't enough to make you nut...I mean, go nuts...we've topped it off with our delicious honey cashew vanilla granola. This organic Succulent Nut Sack is the thing of your wildest trail mix dreams!",                
                 ImageSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533594/thng/succulent_nut_sack_aa2ujs.png",
                 CategoryId = nutCategory.Id,
-                IsOnSale = true,
+                IsOnSale = false,
                 Tags = tags
             };
 
@@ -233,7 +240,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 Description = "This blend of nuts and seeds is perfect for your ketogenic lifestyle! The nut blend of peanuts, Brazil nuts, almonds, and pecans mixed with sesame and sunflower seeds will help keep you in ketosis while providing essential fats, vitamins, and antioxidants. This organic, high-fiber Nut Sack will keep you full, ripped, and craving more of our nuts!",                
                 ImageSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533594/thng/keto_nut_sack_kfgj2w.png",
                 CategoryId = nutCategory.Id,
-                IsOnSale = true,
+                IsOnSale = false,
                 Tags = ketoSackTags
             };
 
@@ -379,7 +386,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 Description = "Energize your Nut Sack with this awesome mix! Almonds, peanuts, and cashews provide long-lasting energy (you're welcome ladies) while the bananas, apple rings, and raisins will provide a quick boost in energy levels! For even more energy, we've topped it off with coconut, dark chocolate chips, and pumpkin seeds. All ingredients are organic so you can enjoy the natural stamina without the crash.",                
                 ImageSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/energy_nut_sack_jwssmx.png",                
                 CategoryId = nutCategory.Id,
-                IsOnSale = true,
+                IsOnSale = false,
                 Tags = energySackTags
             };
 
@@ -524,7 +531,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 Description = "You tell us how you want our Nut Sack! With the Custom Nut Sack, you get to choose from all of our ingredients to create the Nut Sack you've always wanted! As always, we will fill this Nut Sack with only organic ingredients to provide you with the highest quality, best tasting Nut Sack you have ever had!",                
                 ImageSrc = "https://res.cloudinary.com/healthynutguys/image/upload/f_auto,q_70,w_512/v1588533593/thng/custom_nut_sack_zfuek1.png",
                 CategoryId = nutCategory.Id,
-                IsOnSale = true,
+                IsOnSale = false,
                 Tags = customSackTags
             };
 

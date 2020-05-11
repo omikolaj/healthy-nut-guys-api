@@ -1,17 +1,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Services.EmailService;
 using HealthyNutGuysAPI.Auth.Jwt;
 using HealthyNutGuysDataCore.Repositories;
-using HealthyNutGuysDataCore.Repositories.Gallery;
-using HealthyNutGuysDataCore.Repositories.Schedule;
-using HealthyNutGuysDataCore.Repositories.TeamSignUp;
 using HealthyNutGuysDomain;
 using HealthyNutGuysDomain.Repositories;
-using HealthyNutGuysDomain.Repositories.Gallery;
-using HealthyNutGuysDomain.Repositories.Merchandise;
-using HealthyNutGuysDomain.Repositories.Schedule;
-using HealthyNutGuysDomain.Repositories.TeamSignUp;
 using HealthyNutGuysDomain.Supervisor;
 
 namespace HealthyNutGuysAPI.Configurations
@@ -21,17 +13,7 @@ namespace HealthyNutGuysAPI.Configurations
     public static IServiceCollection ConfigureRepositories(this IServiceCollection services)
     {
             //Register repository interfaces here      
-            services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>()
-                    .AddScoped<IGearItemRepository, GearItemRepository>()
-                    .AddScoped<IGearImageRepository, GearImageRepository>()
-                    .AddScoped<IGearSizeRepository, GearSizeRepository>()
-                    .AddScoped<ILeagueImageRepository, LeagueImageRepository>()
-                    .AddScoped<ITeamSignUpRepository, TeamSignUpRepository>()
-                    .AddScoped<IPreOrderRepository, PreOrderRepository>()
-                    .AddScoped<ILeagueRepository, LeagueRepository>()
-                    .AddScoped<ISessionScheduleRepository, SessionScheduleRepository>()
-                    .AddScoped<ISportTypeRepository, SportTypeRepository>()
-                    .AddScoped<ITeamRepository, TeamRepository>()
+            services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>()                    
                     .AddScoped<IPromoCodeRepository, PromoCodeRepository>()
                     .AddScoped<ISpecialOfferRepository, SpecialOfferRepository>()
                     .AddScoped<IProductRepository, ProductRepository>()
@@ -51,7 +33,7 @@ namespace HealthyNutGuysAPI.Configurations
 
     public static IServiceCollection ConfigureEmailSetUp(this IServiceCollection services)
     {
-      services.AddScoped<ISendEmailService, SendEmailService>();
+      //services.AddScoped<ISendEmailService, SendEmailService>();
       return services;
     }
 
