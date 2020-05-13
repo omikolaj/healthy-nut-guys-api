@@ -18,13 +18,13 @@ namespace HealthyNutGuysAPI.Middleware
 
     public async Task InvokeAsync(HttpContext context)
     {
-      string applicationToken = context.Request.Cookies[TokenOptionsStrings.ApplicationToken];
-      if (applicationToken != null)
-      {
-        context.Request.Headers.Append("Authorization", "Bearer " + applicationToken);
-      }
+            string applicationToken = context.Request.Cookies[TokenOptionsStrings.ApplicationToken];
+            if (applicationToken != null)
+            {
+                context.Request.Headers.Append("Authorization", "Bearer " + applicationToken);
+            }
 
-      await _next.Invoke(context);
+            await _next.Invoke(context);
     }
   }
 }

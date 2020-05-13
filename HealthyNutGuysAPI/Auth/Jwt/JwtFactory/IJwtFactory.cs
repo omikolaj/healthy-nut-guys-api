@@ -5,6 +5,6 @@ namespace HealthyNutGuysAPI.Auth.Jwt.JwtFactory
 {
   public interface IJwtFactory
   {
-    Task<string> GenerateEncodedToken(string userName, ClaimsIdentity identity);
+    Task<string> GenerateEncodedToken(string userId, ClaimsIdentity identity);
   }
 }
