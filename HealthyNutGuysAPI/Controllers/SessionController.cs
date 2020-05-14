@@ -77,29 +77,23 @@ namespace HealthyNutGuysAPI.Controllers
             return new OkObjectResult(token);
         }
 
-        //[HttpPost("admin/{:id}/update-password")]
-        //public async Task<ActionResult<bool>> UpdatePassword([FromBody] LoginViewModel login, CancellationToken ct = default(CancellationToken))
-        //{
-        //  ApplicationUser user = _userManager.Users.SingleOrDefault(u => u.UserName == login.UserName);            
+        [HttpPost("signup")]
+        public async Task<ActionResult<bool>> RegisterUser([FromBody] ApplicationUserViewModel newUser, CancellationToken ct = default(CancellationToken))
+        {
+            newUser = await this._supervisor.CreateUserAsync(newUser);
+            if(newUser == null)
+            {
+                return BadRequest("Error occured creating user");
+            }
 
-        //  ClaimsIdentity identity = await _getIdentity.GetClaimsIdentity(user, login.Password);
+            ApplicationUser appUser = _userManager.Users.SingleOrDefault(u => u.Email == newUser.Email);
 
-        //  if (identity == null)
-        //  {
-        //    return Unauthorized(Errors.AddErrorToModelState(ErrorCodes.Login, ErrorDescriptions.LoginFailure, ModelState));
-        //  }
+            ClaimsIdentity identity = await _getIdentity.GenerateClaimsIdentity(appUser);
 
-        //  string token = await this._userManager.GeneratePasswordResetTokenAsync(user);
+            ApplicationToken token = await Token.GenerateJwt(appUser.Id, identity, this._jwtFactory, this._jwtOptions);
 
-        //  IdentityResult result = await this._userManager.ResetPasswordAsync(user, token, login.NewPassword);
-
-        //  if (!result.Succeeded)
-        //  {
-        //    return BadRequest(Errors.AddErrorToModelState(ErrorCodes.PasswordUpdate, ErrorDescriptions.PasswordUpdateFailure, ModelState));
-        //  }
-
-        //  return new OkObjectResult(true);
-        //}
+            return new OkObjectResult(token);
+        }
 
         [HttpDelete("logout")]
         public async Task<ActionResult<bool>> Logout(long userId, CancellationToken ct = default(CancellationToken))
