@@ -5,6 +5,7 @@ using HealthyNutGuysDataCore.Repositories;
 using HealthyNutGuysDomain;
 using HealthyNutGuysDomain.Repositories;
 using HealthyNutGuysDomain.Supervisor;
+using HealthyNutGuysAPI.Services.EmailService;
 
 namespace HealthyNutGuysAPI.Configurations
 {
@@ -33,7 +34,7 @@ namespace HealthyNutGuysAPI.Configurations
 
     public static IServiceCollection ConfigureEmailSetUp(this IServiceCollection services)
     {
-      //services.AddScoped<ISendEmailService, SendEmailService>();
+      services.AddScoped<ISendEmailService, SendEmailService>();
       return services;
     }
 

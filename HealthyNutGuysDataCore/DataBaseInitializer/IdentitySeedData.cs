@@ -65,7 +65,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             ApplicationUser admin1 = new ApplicationUser
             {
-                UserName = "jsprague",
+                UserName = "jsprague@gmail.com",
                 Email = "jsprague@gmail.com",
                 FirstName = "Jordan",
                 LastName = "Legs",
@@ -74,7 +74,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             ApplicationUser admin2 = new ApplicationUser
             {
-                UserName = "nwolf",
+                UserName = "nwolf@gmail.com",
                 Email = "nwolf@gmail.com",
                 FirstName = "Nick",
                 LastName = "HanglySack",
@@ -83,7 +83,7 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
 
             ApplicationUser sysAdmin = new ApplicationUser
             {
-                UserName = "omikolaj",
+                UserName = "omikolaj1@gmail.com",
                 Email = "omikolaj1@gmail.com",
                 FirstName = "Oskar",
                 LastName = "Mikolajczyk"

@@ -22,6 +22,7 @@ using HealthyNutGuysDomain;
 using HealthyNutGuysDomain.Converters;
 using HealthyNutGuysDomain.Models;
 using HealthyNutGuysDomain.ViewModels;
+using HealthyNutGuysAPI.Services.EmailService;
 
 namespace HealthyNutGuysAPI.Controllers
 {
@@ -38,6 +39,7 @@ namespace HealthyNutGuysAPI.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly GetIdentity _getIdentity;
         private readonly JwtIssuerOptions _jwtOptions;
+        private readonly ISendEmailService _emailService;
 
         #endregion
 
@@ -47,13 +49,15 @@ namespace HealthyNutGuysAPI.Controllers
           IJwtFactory jwtFactory,
           IOptions<JwtIssuerOptions> jwtOptions,
           UserManager<ApplicationUser> userManager,
-          GetIdentity getIdentity)
+          GetIdentity getIdentity,
+          ISendEmailService emailSrvice)
         {
             this._supervisor = supervisor;
             this._jwtFactory = jwtFactory;
             this._userManager = userManager;
             this._jwtOptions = jwtOptions.Value;
             this._getIdentity = getIdentity;
+            this._emailService = emailSrvice;
         }
 
         #endregion
@@ -75,6 +79,38 @@ namespace HealthyNutGuysAPI.Controllers
             ApplicationToken token = await Token.GenerateJwt(appUser.Id, identity, this._jwtFactory, this._jwtOptions);
 
             return new OkObjectResult(token);
+        }
+
+        [HttpPost("password-recovery")]
+        public async Task<ActionResult> PasswordRecovery([FromBody] string email, CancellationToken ct = default(CancellationToken))
+        {
+            ApplicationUser user = await this._userManager.FindByNameAsync(email);
+            if(user == null) // or user is not confirmed !(await this._userManager.IsEmailConfirmedAsync(user.id))
+            {
+                // fail silently
+                return Ok();
+            }
+
+            string code = await _userManager.GeneratePasswordResetTokenAsync(user);
+            string callbackUrl = Url.Action("reset-password", "Session", new { UserId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+
+            if (this._emailService.SendEmail(user, callbackUrl)) 
+            {
+                // fail silently
+                return Ok();
+            };
+
+            return BadRequest("Error occured while sending email");
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<ActionResult<bool>> ResetPassword(long userId, CancellationToken ct = default(CancellationToken))
+        {
+            // there is no way to invalidate JWTs
+            // one solution is to keep a black list of JWTs that are valid but have been logged out
+            // then use middleware that will check to see if someone is accessing the authroized endpoint 
+            // with a blacklisted jwt. The blacklist can be kept in memory store such as reddis
+            return new OkObjectResult(true);
         }
 
         [HttpPost("signup")]
