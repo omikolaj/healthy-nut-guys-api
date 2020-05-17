@@ -98,10 +98,15 @@ namespace HealthyNutGuysAPI
                 }
 
                 // Middleware has to be registered first, otherwise we get a bearer challenge 401 error
-                app.UseRouting()
+                app.UseRouting()                    
                     .UseCors("AllowAll")
                     .UseAuthentication()
-                    .SeedDatabase();
+                    .UseAuthorization()
+                    .SeedDatabase()
+                    .UseEndpoints(endpoints =>
+                    {
+                         endpoints.MapControllers();
+                    });
                 //.UseHttpsRedirection()
                 //.UseSecurityHeaders();
 
@@ -129,10 +134,7 @@ namespace HealthyNutGuysAPI
                 //});
 
                 // may be unecessary 
-                app.UseEndpoints(endpoints =>
-                {
-                    endpoints.MapControllers();
-                });
+                
             }
             catch (Exception ex)
             {

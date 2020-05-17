@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthyNutGuysDataCore.Migrations
 {
     [DbContext(typeof(HealthyNutGuysContext))]
-    [Migration("20200508224830_InitialCreate")]
+    [Migration("20200517201929_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -729,6 +729,93 @@ namespace HealthyNutGuysDataCore.Migrations
                     b.ToTable("UserSubscriptions");
                 });
 
+            modelBuilder.Entity("HealthyNutGuysDomain.Models.UserSubscriptionMixCategory", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MixCategoryId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserSubscriptionProductId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MixCategoryId");
+
+                    b.HasIndex("UserSubscriptionProductId");
+
+                    b.ToTable("UserSubscriptionMixCategories");
+                });
+
+            modelBuilder.Entity("HealthyNutGuysDomain.Models.UserSubscriptionMixCategoryIngredient", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("IngredientId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserSubscriptionMixCategoryId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Weight")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IngredientId");
+
+                    b.HasIndex("UserSubscriptionMixCategoryId");
+
+                    b.ToTable("UserSubscriptionMixCategoryIngredient");
+                });
+
+            modelBuilder.Entity("HealthyNutGuysDomain.Models.UserSubscriptionProduct", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CustomProductId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CustomSelectOptionId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ProductId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("SelectOptionId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserSubscriptionId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomProductId");
+
+                    b.HasIndex("CustomSelectOptionId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("SelectOptionId");
+
+                    b.HasIndex("UserSubscriptionId");
+
+                    b.ToTable("UserSubscriptionProducts");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -1019,6 +1106,51 @@ namespace HealthyNutGuysDataCore.Migrations
                     b.HasOne("HealthyNutGuysDomain.Models.SubscriptionOffer", "SubscriptionOffer")
                         .WithMany()
                         .HasForeignKey("SubscriptionOfferId");
+                });
+
+            modelBuilder.Entity("HealthyNutGuysDomain.Models.UserSubscriptionMixCategory", b =>
+                {
+                    b.HasOne("HealthyNutGuysDomain.Models.MixCategory", "MixCategory")
+                        .WithMany()
+                        .HasForeignKey("MixCategoryId");
+
+                    b.HasOne("HealthyNutGuysDomain.Models.UserSubscriptionProduct", "UserSubscriptionProduct")
+                        .WithMany("SubscriptionMixCategories")
+                        .HasForeignKey("UserSubscriptionProductId");
+                });
+
+            modelBuilder.Entity("HealthyNutGuysDomain.Models.UserSubscriptionMixCategoryIngredient", b =>
+                {
+                    b.HasOne("HealthyNutGuysDomain.Models.Ingredient", "Ingredient")
+                        .WithMany()
+                        .HasForeignKey("IngredientId");
+
+                    b.HasOne("HealthyNutGuysDomain.Models.UserSubscriptionMixCategory", "UserSubscriptionMixCategory")
+                        .WithMany("Ingredients")
+                        .HasForeignKey("UserSubscriptionMixCategoryId");
+                });
+
+            modelBuilder.Entity("HealthyNutGuysDomain.Models.UserSubscriptionProduct", b =>
+                {
+                    b.HasOne("HealthyNutGuysDomain.Models.CustomProduct", "CustomProduct")
+                        .WithMany()
+                        .HasForeignKey("CustomProductId");
+
+                    b.HasOne("HealthyNutGuysDomain.Models.CustomSelectOption", "CustomSelectOption")
+                        .WithMany()
+                        .HasForeignKey("CustomSelectOptionId");
+
+                    b.HasOne("HealthyNutGuysDomain.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
+
+                    b.HasOne("HealthyNutGuysDomain.Models.SelectOption", "SelectOption")
+                        .WithMany()
+                        .HasForeignKey("SelectOptionId");
+
+                    b.HasOne("HealthyNutGuysDomain.Models.UserSubscription", "UserSubscription")
+                        .WithMany("UserSubscriptionProducts")
+                        .HasForeignKey("UserSubscriptionId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

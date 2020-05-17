@@ -11,6 +11,24 @@ namespace HealthyNutGuysDomain.Supervisor
     public partial class HealthyNutGuysSupervisor : IHealthyNutGuysSupervisor
     {
         #region Methods
+
+        public async Task<UserSubscriptionViewModel> GetUserSubscriptionByIdAsync(string id, CancellationToken ct = default)
+        {
+            ApplicationUser user = await this._userManager.FindByIdAsync(id);
+            if(user != null)
+            {
+                UserSubscription userSubscription = await this._userSubscriptionRepository.GetUserSubscriptionByUserId(id);
+                if (userSubscription != null)
+                {
+                    UserSubscriptionViewModel userSubscriptionView = UserSubscriptionConverter.Convert(userSubscription);
+
+                    userSubscriptionView.UserSubscriptionProducts = UserSubscriptionProductConverter.ConvertList(await this._userSubscriptionProductsRepository.GetAllByUserSubscriptionIdAsync(userSubscription.Id, ct));
+                }
+            }
+
+            return null;
+        }
+
         public async Task<ApplicationUserViewModel> CreateUserAsync(ApplicationUserViewModel userViewModel, CancellationToken ct = default)
         {
             ApplicationUser newUser = new ApplicationUser();

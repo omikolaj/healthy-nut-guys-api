@@ -14,14 +14,16 @@ namespace HealthyNutGuysAPI.Configurations
     public static IServiceCollection ConfigureRepositories(this IServiceCollection services)
     {
             //Register repository interfaces here      
-            services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>()                    
+            services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>()
                     .AddScoped<IPromoCodeRepository, PromoCodeRepository>()
                     .AddScoped<ISpecialOfferRepository, SpecialOfferRepository>()
                     .AddScoped<IProductRepository, ProductRepository>()
                     .AddScoped<ISaleItemRepository, SaleItemRepository>()
                     .AddScoped<IMixCategoryRepository, MixCategoryRepository>()
                     .AddScoped<IIngredientRepository, IngredientRepository>()
-                    .AddScoped<ICustomProductRepository, CustomProductRepository>();
+                    .AddScoped<ICustomProductRepository, CustomProductRepository>()
+                    .AddScoped<IUserSubscriptionRepository, UserSubscriptionRepository>()
+                    .AddScoped<IUserSubscriptionProductRepository, UserSubscriptionProductRepository>();
 
       return services;
     }

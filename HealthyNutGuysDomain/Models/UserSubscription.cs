@@ -16,5 +16,6 @@ namespace HealthyNutGuysDomain.Models
         public SubscriptionOffer SubscriptionOffer { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
         public ICollection<SpecialOffer> SpecialOffers { get; set; }
+        public ICollection<UserSubscriptionProduct> UserSubscriptionProducts { get; set; }
     }
 }

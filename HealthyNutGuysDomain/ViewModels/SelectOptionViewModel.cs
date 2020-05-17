@@ -8,7 +8,7 @@ namespace HealthyNutGuysDomain.ViewModels
     [DataContract()]
     public class SelectOptionViewModel
     {
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember(EmitDefaultValue = true)]
         public string Id { get; set; }
         [DataMember(EmitDefaultValue = false)]
         public string ProductDetailsId { get; set; }

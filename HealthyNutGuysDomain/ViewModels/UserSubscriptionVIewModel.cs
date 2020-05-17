@@ -1,22 +1,23 @@
-﻿using System;
+﻿using HealthyNutGuysDomain.Models;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
 namespace HealthyNutGuysDomain.ViewModels
 {
-    [DataContract()]
-    public class PromoCodeViewModel
+    [DataContract]
+    public class UserSubscriptionViewModel
     {
         [DataMember(EmitDefaultValue = true)]
         public string Id { get; set; }
         [DataMember(EmitDefaultValue = false)]
-        public string Code { get; set; }
+        public DateTime NextDelivery { get; set; }
         [DataMember(EmitDefaultValue = false)]
-        public DateTime ExpireDate { get; set; }
+        public DateTime Modified { get; set; }
         [DataMember(EmitDefaultValue = false)]
-        public decimal DiscountValue { get; set; }
+        public Frequency Frequency { get; set; }
         [DataMember(EmitDefaultValue = false)]
-        public OfferType Type { get; set; }
+        public ICollection<UserSubscriptionProductViewModel> UserSubscriptionProducts { get; set; }
     }
 }

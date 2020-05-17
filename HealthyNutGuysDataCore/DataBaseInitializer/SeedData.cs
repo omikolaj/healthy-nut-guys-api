@@ -1129,11 +1129,217 @@ namespace HealthyNutGuysDataCore.DataBaseInitializer
                 SpecialOffers = new List<SpecialOffer>
                 {
                     freeShippingNextOrder
-                }
+                },
             };
 
             dbContext.UserSubscriptions.Add(userSubscription);
             dbContext.SaveChanges();
+
+            #region 16oz CustomSack
+            UserSubscriptionProduct subscriptionProduct = new UserSubscriptionProduct
+            {
+                Id = Guid.NewGuid().ToString(),
+                CustomProductId = customSack.Id,
+                CustomSelectOptionId = customSack16oz.Id,
+                UserSubscriptionId = userSubscription.Id               
+            };
+
+            dbContext.UserSubscriptionProducts.Add(subscriptionProduct);
+            dbContext.SaveChanges();
+            
+            UserSubscriptionMixCategory subscriptionNutsMixCategory = new UserSubscriptionMixCategory
+            {
+                Id = Guid.NewGuid().ToString(),
+                MixCategoryId = nuts.Id,
+                UserSubscriptionProductId = subscriptionProduct.Id,
+            };
+
+            UserSubscriptionMixCategory subscriptionFuitsMixCategory = new UserSubscriptionMixCategory
+            {
+                Id = Guid.NewGuid().ToString(),
+                MixCategoryId = fruits.Id,
+                UserSubscriptionProductId = subscriptionProduct.Id,
+            };
+
+            UserSubscriptionMixCategory subscriptionSeedsMixCategory = new UserSubscriptionMixCategory
+            {
+                Id = Guid.NewGuid().ToString(),
+                MixCategoryId = seeds.Id,
+                UserSubscriptionProductId = subscriptionProduct.Id,
+            };
+
+            List<UserSubscriptionMixCategory> mixCategories16 = new List<UserSubscriptionMixCategory> {
+                subscriptionNutsMixCategory,
+                subscriptionFuitsMixCategory,
+                subscriptionSeedsMixCategory
+            };
+
+            foreach (UserSubscriptionMixCategory mix in mixCategories16)
+            {
+                dbContext.UserSubscriptionMixCategories.Add(mix);
+                dbContext.SaveChanges();
+            }
+
+            UserSubscriptionMixCategoryIngredient cachewsIngredient = new UserSubscriptionMixCategoryIngredient
+            {
+                Id = Guid.NewGuid().ToString(),
+                IngredientId = cachews.Id,
+                Weight = 2,
+                UserSubscriptionMixCategoryId = subscriptionNutsMixCategory.Id
+            };
+
+            UserSubscriptionMixCategoryIngredient walnutsIngredient = new UserSubscriptionMixCategoryIngredient
+            {
+                Id = Guid.NewGuid().ToString(),
+                IngredientId = walnuts.Id,
+                Weight = 2,
+                UserSubscriptionMixCategoryId = subscriptionNutsMixCategory.Id
+            };
+
+            UserSubscriptionMixCategoryIngredient peanutsIngredient = new UserSubscriptionMixCategoryIngredient
+            {
+                Id = Guid.NewGuid().ToString(),
+                IngredientId = peanuts.Id,
+                Weight = 4,
+                UserSubscriptionMixCategoryId = subscriptionNutsMixCategory.Id
+            };
+
+            UserSubscriptionMixCategoryIngredient bananaIngredient = new UserSubscriptionMixCategoryIngredient
+            {
+                Id = Guid.NewGuid().ToString(),
+                IngredientId = bananas.Id,
+                Weight = 2,
+                UserSubscriptionMixCategoryId = subscriptionFuitsMixCategory.Id
+            };
+
+            UserSubscriptionMixCategoryIngredient sesameIngredient = new UserSubscriptionMixCategoryIngredient
+            {
+                Id = Guid.NewGuid().ToString(),
+                IngredientId = sesame.Id,
+                Weight = 6,
+                UserSubscriptionMixCategoryId = subscriptionSeedsMixCategory.Id
+            };
+
+            List<UserSubscriptionMixCategoryIngredient> ingredients16oz = new List<UserSubscriptionMixCategoryIngredient>
+            {
+                cachewsIngredient,
+                walnutsIngredient,
+                peanutsIngredient,
+                bananaIngredient,
+                sesameIngredient
+            };
+
+            foreach (UserSubscriptionMixCategoryIngredient ing in ingredients16oz)
+            {
+                dbContext.UserSubscriptionMixCategoryIngredient.Add(ing);
+                dbContext.SaveChanges();
+            }
+
+            #endregion
+
+            #region 8oz CustomSack
+            UserSubscriptionProduct subscriptionProduct2 = new UserSubscriptionProduct
+            {
+                Id = Guid.NewGuid().ToString(),
+                CustomProductId = customSack.Id,
+                CustomSelectOptionId = customSack8oz.Id,
+                UserSubscriptionId = userSubscription.Id
+            };
+
+            dbContext.UserSubscriptionProducts.Add(subscriptionProduct2);
+            dbContext.SaveChanges();
+
+            UserSubscriptionMixCategory subscriptionNutsMixCategory2 = new UserSubscriptionMixCategory
+            {
+                Id = Guid.NewGuid().ToString(),
+                MixCategoryId = nuts.Id,
+                UserSubscriptionProductId = subscriptionProduct2.Id,
+            };
+
+            UserSubscriptionMixCategory subscriptionFuitsMixCategory2 = new UserSubscriptionMixCategory
+            {
+                Id = Guid.NewGuid().ToString(),
+                MixCategoryId = fruits.Id,
+                UserSubscriptionProductId = subscriptionProduct2.Id,
+            };
+
+            UserSubscriptionMixCategory subscriptionSeedsMixCategory2 = new UserSubscriptionMixCategory
+            {
+                Id = Guid.NewGuid().ToString(),
+                MixCategoryId = seeds.Id,
+                UserSubscriptionProductId = subscriptionProduct2.Id,
+            };
+
+            List<UserSubscriptionMixCategory> mixCategories8 = new List<UserSubscriptionMixCategory>
+            {
+                subscriptionNutsMixCategory2,
+                subscriptionFuitsMixCategory2,
+                subscriptionSeedsMixCategory2
+            };
+
+            foreach (UserSubscriptionMixCategory mixCategory in mixCategories8)
+            {
+                dbContext.UserSubscriptionMixCategories.Add(mixCategory);
+                dbContext.SaveChanges();
+            }
+
+            UserSubscriptionMixCategoryIngredient cachewsIngredient2 = new UserSubscriptionMixCategoryIngredient
+            {
+                Id = Guid.NewGuid().ToString(),
+                IngredientId = cachews.Id,
+                Weight = 2,
+                UserSubscriptionMixCategoryId = subscriptionNutsMixCategory2.Id
+            };
+
+            UserSubscriptionMixCategoryIngredient walnutsIngredient2 = new UserSubscriptionMixCategoryIngredient
+            {
+                Id = Guid.NewGuid().ToString(),
+                IngredientId = walnuts.Id,
+                Weight = 2,
+                UserSubscriptionMixCategoryId = subscriptionNutsMixCategory2.Id
+            };
+
+            UserSubscriptionMixCategoryIngredient peanutsIngredient2 = new UserSubscriptionMixCategoryIngredient
+            {
+                Id = Guid.NewGuid().ToString(),
+                IngredientId = peanuts.Id,
+                Weight = 4,
+                UserSubscriptionMixCategoryId = subscriptionNutsMixCategory2.Id
+            };
+
+            UserSubscriptionMixCategoryIngredient bananaIngredient2 = new UserSubscriptionMixCategoryIngredient
+            {
+                Id = Guid.NewGuid().ToString(),
+                IngredientId = bananas.Id,
+                Weight = 2,
+                UserSubscriptionMixCategoryId = subscriptionFuitsMixCategory2.Id
+            };
+
+            UserSubscriptionMixCategoryIngredient sesameIngredient2 = new UserSubscriptionMixCategoryIngredient
+            {
+                Id = Guid.NewGuid().ToString(),
+                IngredientId = sesame.Id,
+                Weight = 6,
+                UserSubscriptionMixCategoryId = subscriptionSeedsMixCategory2.Id
+            };
+
+            List<UserSubscriptionMixCategoryIngredient> ingredients8oz = new List<UserSubscriptionMixCategoryIngredient>
+            {
+                cachewsIngredient2,
+                walnutsIngredient2,
+                peanutsIngredient2,
+                bananaIngredient2,
+                sesameIngredient2
+            };
+
+            foreach (UserSubscriptionMixCategoryIngredient ing in ingredients8oz)
+            {
+                dbContext.UserSubscriptionMixCategoryIngredient.Add(ing);
+                dbContext.SaveChanges();
+            }
+
+            #endregion
+
         }
         
     }

@@ -8,6 +8,8 @@ namespace HealthyNutGuysDomain
     public interface IHealthyNutGuysSupervisor
     {
         #region ApplicationUser
+
+        Task<UserSubscriptionViewModel> GetUserSubscriptionByIdAsync(string id, CancellationToken ct = default(CancellationToken));        
         Task<List<ApplicationUserViewModel>> GetAllUsersAsync(CancellationToken ct = default(CancellationToken));
         Task<ApplicationUserViewModel> GetUserByIDAsync(string ID, CancellationToken ct = default(CancellationToken));
         Task<ApplicationUserViewModel> CreateUserAsync(ApplicationUserViewModel userViewModel, CancellationToken ct = default(CancellationToken));

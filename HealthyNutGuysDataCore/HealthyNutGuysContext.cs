@@ -29,7 +29,10 @@ namespace HealthyNutGuysDataCore
         public DbSet<SpecialOffer> SpecialOffers { get; set; }
         public DbSet<SaleItem> SaleItems { get; set; }
         public DbSet<SelectOption> SelectOptions { get; set; }
-        public DbSet<CustomSelectOption> CustomSelectOptions { get; set; }        
+        public DbSet<CustomSelectOption> CustomSelectOptions { get; set; }
+        public DbSet<UserSubscriptionProduct> UserSubscriptionProducts { get; set; }
+        public DbSet <UserSubscriptionMixCategory> UserSubscriptionMixCategories { get; set; }
+        public DbSet<UserSubscriptionMixCategoryIngredient> UserSubscriptionMixCategoryIngredient { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

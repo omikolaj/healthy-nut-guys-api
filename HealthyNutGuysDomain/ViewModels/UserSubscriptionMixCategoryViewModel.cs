@@ -5,12 +5,14 @@ using System.Text;
 
 namespace HealthyNutGuysDomain.ViewModels
 {
-    [DataContract()]
-    public class TagViewModel
+    [DataContract]
+    public class UserSubscriptionMixCategoryViewModel
     {
         [DataMember(EmitDefaultValue = true)]
         public string Id { get; set; }
         [DataMember(EmitDefaultValue = false)]
-        public string Name { get; set; }
+        public MixCategoryViewModel MixCategory { get; set; }
+        [DataMember(EmitDefaultValue = false)]
+        public ICollection<UserSubscriptionMixCategoryIngredientViewModel> Ingredients { get; set; }
     }
 }

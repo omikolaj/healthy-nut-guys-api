@@ -9,7 +9,7 @@ namespace HealthyNutGuysDomain.ViewModels
     [DataContract()]
     public class ProductViewModel
     {
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember(EmitDefaultValue = true)]
         public string Id { get; set; }
         [DataMember(EmitDefaultValue = false)]
         public string CategoryId { get; set; }

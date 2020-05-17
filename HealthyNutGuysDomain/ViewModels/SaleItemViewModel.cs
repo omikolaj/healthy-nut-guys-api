@@ -8,7 +8,7 @@ namespace HealthyNutGuysDomain.ViewModels
     [DataContract()]
     public class SaleItemViewModel
     {
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember(EmitDefaultValue = true)]
         public string Id { get; set; }
         [DataMember(EmitDefaultValue = false)]
         public string? PromoCodeId { get; set; }
@@ -20,7 +20,7 @@ namespace HealthyNutGuysDomain.ViewModels
         public string ProductId { get; set; }        
         [DataMember(EmitDefaultValue = false)]
         public DateTime ExpireDate { get; set; }        
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember(EmitDefaultValue = true)]
         public decimal SalePrice { get; set; }
         [DataMember(EmitDefaultValue = false)]
         public OfferType Type { get; set; }

@@ -38,22 +38,10 @@ namespace HealthyNutGuysAPI.Controllers
 
         #region Controllers
 
-        [HttpGet("{id}/roles")]
-        [Produces(typeof(IList<string>))]
-        public async Task<ActionResult<IList<string>>> GetUserRoles(string userId, CancellationToken ct = default(CancellationToken))
+        [HttpGet("{userId}/subscription-info")]
+        public async Task<ActionResult<UserSubscriptionViewModel>> GetUserInfo(string userId, CancellationToken ct = default(CancellationToken))
         {
-            Claim userIdClaim = User.Claims.Where(c => c.Type == Constants.Strings.JwtClaimIdentifiers.Id).FirstOrDefault();
-
-            ApplicationUser user = _userManager.Users.SingleOrDefault(u => u.Id == userIdClaim.Value);
-
-            if (user == null)
-            {
-                return BadRequest();
-            }
-
-            IList<string> roles = await this._userManager.GetRolesAsync(user);
-
-            return new JsonResult(roles);
+            return await this._supervisor.GetUserSubscriptionByIdAsync(userId, ct);
         }
 
         #endregion

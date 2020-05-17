@@ -8,7 +8,7 @@ namespace HealthyNutGuysDomain.ViewModels
     [DataContract()]
     public class CustomProductViewModel
     {
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember(EmitDefaultValue = true)]
         public string Id { get; set; }
         [DataMember(EmitDefaultValue = false)]
         public string CategoryId { get; set; }
@@ -26,7 +26,7 @@ namespace HealthyNutGuysDomain.ViewModels
         public decimal? Price { get; set; }
         [DataMember(EmitDefaultValue = true)]
         public bool IsOnSale { get; set; }
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember(EmitDefaultValue = true)]
         public decimal SalePrice { get; set; }
         [DataMember(EmitDefaultValue = true)]
         public bool IsInStock { get; set; }

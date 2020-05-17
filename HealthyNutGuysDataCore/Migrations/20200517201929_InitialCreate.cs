@@ -583,6 +583,53 @@ namespace HealthyNutGuysDataCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserSubscriptionProducts",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    ProductId = table.Column<string>(nullable: true),
+                    CustomProductId = table.Column<string>(nullable: true),
+                    SelectOptionId = table.Column<string>(nullable: true),
+                    CustomSelectOptionId = table.Column<string>(nullable: true),
+                    UserSubscriptionId = table.Column<string>(nullable: true),
+                    Deleted = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserSubscriptionProducts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserSubscriptionProducts_CustomProducts_CustomProductId",
+                        column: x => x.CustomProductId,
+                        principalTable: "CustomProducts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UserSubscriptionProducts_CustomSelectOptions_CustomSelectOptionId",
+                        column: x => x.CustomSelectOptionId,
+                        principalTable: "CustomSelectOptions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UserSubscriptionProducts_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UserSubscriptionProducts_SelectOptions_SelectOptionId",
+                        column: x => x.SelectOptionId,
+                        principalTable: "SelectOptions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UserSubscriptionProducts_UserSubscriptions_UserSubscriptionId",
+                        column: x => x.UserSubscriptionId,
+                        principalTable: "UserSubscriptions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SaleItems",
                 columns: table => new
                 {
@@ -650,6 +697,59 @@ namespace HealthyNutGuysDataCore.Migrations
                         name: "FK_SubscriptionOffers_SpecialOffers_SpecialOfferId",
                         column: x => x.SpecialOfferId,
                         principalTable: "SpecialOffers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserSubscriptionMixCategories",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    UserSubscriptionProductId = table.Column<string>(nullable: true),
+                    MixCategoryId = table.Column<string>(nullable: true),
+                    Deleted = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserSubscriptionMixCategories", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserSubscriptionMixCategories_MixCategories_MixCategoryId",
+                        column: x => x.MixCategoryId,
+                        principalTable: "MixCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UserSubscriptionMixCategories_UserSubscriptionProducts_UserSubscriptionProductId",
+                        column: x => x.UserSubscriptionProductId,
+                        principalTable: "UserSubscriptionProducts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserSubscriptionMixCategoryIngredient",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    UserSubscriptionMixCategoryId = table.Column<string>(nullable: true),
+                    IngredientId = table.Column<string>(nullable: true),
+                    Deleted = table.Column<bool>(nullable: false),
+                    Weight = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserSubscriptionMixCategoryIngredient", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserSubscriptionMixCategoryIngredient_Ingredients_IngredientId",
+                        column: x => x.IngredientId,
+                        principalTable: "Ingredients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UserSubscriptionMixCategoryIngredient_UserSubscriptionMixCategories_UserSubscriptionMixCategoryId",
+                        column: x => x.UserSubscriptionMixCategoryId,
+                        principalTable: "UserSubscriptionMixCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -821,6 +921,51 @@ namespace HealthyNutGuysDataCore.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserSubscriptionMixCategories_MixCategoryId",
+                table: "UserSubscriptionMixCategories",
+                column: "MixCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserSubscriptionMixCategories_UserSubscriptionProductId",
+                table: "UserSubscriptionMixCategories",
+                column: "UserSubscriptionProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserSubscriptionMixCategoryIngredient_IngredientId",
+                table: "UserSubscriptionMixCategoryIngredient",
+                column: "IngredientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserSubscriptionMixCategoryIngredient_UserSubscriptionMixCategoryId",
+                table: "UserSubscriptionMixCategoryIngredient",
+                column: "UserSubscriptionMixCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserSubscriptionProducts_CustomProductId",
+                table: "UserSubscriptionProducts",
+                column: "CustomProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserSubscriptionProducts_CustomSelectOptionId",
+                table: "UserSubscriptionProducts",
+                column: "CustomSelectOptionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserSubscriptionProducts_ProductId",
+                table: "UserSubscriptionProducts",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserSubscriptionProducts_SelectOptionId",
+                table: "UserSubscriptionProducts",
+                column: "SelectOptionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserSubscriptionProducts_UserSubscriptionId",
+                table: "UserSubscriptionProducts",
+                column: "UserSubscriptionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserSubscriptions_ApplicationUserId",
                 table: "UserSubscriptions",
                 column: "ApplicationUserId",
@@ -874,22 +1019,16 @@ namespace HealthyNutGuysDataCore.Migrations
                 name: "CartItems");
 
             migrationBuilder.DropTable(
-                name: "CustomSelectOptions");
-
-            migrationBuilder.DropTable(
-                name: "Ingredients");
-
-            migrationBuilder.DropTable(
                 name: "OrderItems");
 
             migrationBuilder.DropTable(
                 name: "SaleItems");
 
             migrationBuilder.DropTable(
-                name: "SelectOptions");
+                name: "Tags");
 
             migrationBuilder.DropTable(
-                name: "Tags");
+                name: "UserSubscriptionMixCategoryIngredient");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -898,22 +1037,37 @@ namespace HealthyNutGuysDataCore.Migrations
                 name: "Carts");
 
             migrationBuilder.DropTable(
-                name: "MixCategories");
-
-            migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "ProductDetails");
+                name: "Ingredients");
 
             migrationBuilder.DropTable(
-                name: "CustomProducts");
+                name: "UserSubscriptionMixCategories");
 
             migrationBuilder.DropTable(
                 name: "Addresses");
 
             migrationBuilder.DropTable(
                 name: "Discounts");
+
+            migrationBuilder.DropTable(
+                name: "MixCategories");
+
+            migrationBuilder.DropTable(
+                name: "UserSubscriptionProducts");
+
+            migrationBuilder.DropTable(
+                name: "CustomSelectOptions");
+
+            migrationBuilder.DropTable(
+                name: "SelectOptions");
+
+            migrationBuilder.DropTable(
+                name: "CustomProducts");
+
+            migrationBuilder.DropTable(
+                name: "ProductDetails");
 
             migrationBuilder.DropTable(
                 name: "Products");
