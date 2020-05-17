@@ -91,8 +91,8 @@ namespace HealthyNutGuysAPI.Controllers
                 return Ok();
             }
 
-            string code = await _userManager.GeneratePasswordResetTokenAsync(user);
-            string callbackUrl = Url.Action("reset-password", "Session", new { UserId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+            string code =  Base64Encode(await _userManager.GeneratePasswordResetTokenAsync(user));                        
+            string callbackUrl = $"http://localhost:4200/auth/reset-password?userId={user.Id}&code={code}";
 
             if (this._emailService.SendEmail(user, callbackUrl)) 
             {
@@ -103,14 +103,21 @@ namespace HealthyNutGuysAPI.Controllers
             return BadRequest("Error occured while sending email");
         }
 
-        [HttpPost("reset-password")]
-        public async Task<ActionResult<bool>> ResetPassword(long userId, CancellationToken ct = default(CancellationToken))
+        [HttpPost("password-reset")]
+        public async Task<ActionResult<bool>> ResetPassword([FromQuery]string userId, [FromQuery]string code, [FromBody]string newPassword, CancellationToken ct = default(CancellationToken))
         {
-            // there is no way to invalidate JWTs
-            // one solution is to keep a black list of JWTs that are valid but have been logged out
-            // then use middleware that will check to see if someone is accessing the authroized endpoint 
-            // with a blacklisted jwt. The blacklist can be kept in memory store such as reddis
-            return new OkObjectResult(true);
+            ApplicationUser user = await this._userManager.FindByIdAsync(userId);
+            if(user != null)
+            {
+                code = Base64Decode(code);
+                IdentityResult result = await this._userManager.ResetPasswordAsync(user, code, newPassword);
+                if (result.Succeeded)
+                {
+                    return new OkObjectResult(true);
+                }
+            }
+
+            return BadRequest("Error occured updating the password");
         }
 
         [HttpPost("signup")]
